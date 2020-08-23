@@ -1,0 +1,11 @@
+.silverBackground {
+  background: silver;
+}
+
+.whiteBackground {
+  background: #ccc;
+}
+
+img {
+  border: 4px solid #fff;
+}
