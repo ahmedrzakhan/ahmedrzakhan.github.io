@@ -6,6 +6,12 @@
   background: #ccc;
 }
 
-img {
-  border: 4px solid #fff;
+.profile {
+  border: 7px solid #fff;
+}
+
+.nameStyle {
+  color: #fff;
+  font-size: 40px;
+  margin: 0px;
 }
