@@ -111,7 +111,7 @@ To customize this portfolio for your own use:
 
 Ahmed Raza Khan - [khanahmed925@gmail.com](mailto:khanahmed925@gmail.com)
 
-Project Link: [https://ahmedrzakhan.github.io](https://ahmedrzakhan.github.io)
+Project Link: [https://ahmdrz.com](https://ahmdrz.com)
 
 ---
 
