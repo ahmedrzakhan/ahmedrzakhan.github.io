@@ -1,5 +1,6 @@
 import React from 'react';
 import { personalInfo, socialLinks } from '../data/portfolio';
+import { getBrandColors } from '../utils/brandColors';
 
 const Footer: React.FC = () => {
   const scrollToTop = () => {
@@ -7,6 +8,7 @@ const Footer: React.FC = () => {
   };
 
   const currentYear = new Date().getFullYear();
+
 
   return (
     <footer className="bg-slate-900 border-t border-slate-800 relative z-10">
@@ -61,18 +63,21 @@ const Footer: React.FC = () => {
           <div className="space-y-4">
             <h3 className="text-xl font-semibold text-white">Connect</h3>
             <div className="flex items-center space-x-4">
-              {socialLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-primary hover:bg-primary/10 transition-all duration-300 transform hover:scale-110"
-                  aria-label={link.name}
-                >
-                  <i className={`${link.icon} text-lg`}></i>
-                </a>
-              ))}
+              {socialLinks.map((link) => {
+                const colors = getBrandColors(link.name);
+                return (
+                  <a
+                    key={link.name}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-300 transform hover:scale-110 shadow-md ${colors.bg} ${colors.hover}`}
+                    aria-label={link.name}
+                  >
+                    <i className={`${link.icon} text-lg ${colors.icon}`}></i>
+                  </a>
+                );
+              })}
             </div>
             <div className="space-y-2">
               <a

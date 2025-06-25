@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { personalInfo, animatedRoles, socialLinks } from '../data/portfolio';
+import { getBrandColors } from '../utils/brandColors';
 
 const Hero: React.FC = () => {
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
@@ -75,18 +76,21 @@ const Hero: React.FC = () => {
           </div>
           
           <div className="flex items-center justify-center space-x-6">
-            {socialLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-primary text-2xl transition-all duration-300 transform hover:scale-125"
-                aria-label={link.name}
-              >
-                <i className={link.icon}></i>
-              </a>
-            ))}
+            {socialLinks.map((link) => {
+              const colors = getBrandColors(link.name);
+              return (
+                <a
+                  key={link.name}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`w-12 h-12 rounded-lg flex items-center justify-center text-2xl transition-all duration-300 transform hover:scale-125 shadow-lg ${colors.bg} ${colors.hover}`}
+                  aria-label={link.name}
+                >
+                  <i className={`${link.icon} ${colors.icon}`}></i>
+                </a>
+              );
+            })}
           </div>
         </div>
         

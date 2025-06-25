@@ -9,6 +9,12 @@ module.exports = {
         primary: '#2E9EF7',
         secondary: '#1e293b',
         accent: '#3b82f6',
+        // Brand colors for social media
+        'github': '#24292e',
+        'linkedin': '#0077b5',
+        'twitter': '#1da1f2',
+        'leetcode': '#ffa116',
+        'gmail': '#ea4335',
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',

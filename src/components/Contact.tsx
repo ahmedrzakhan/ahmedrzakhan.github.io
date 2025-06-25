@@ -1,5 +1,6 @@
 import React from 'react';
 import { personalInfo, socialLinks, resumeLink } from '../data/portfolio';
+import { getBrandColors } from '../utils/brandColors';
 
 interface ContactProps {
   analytics?: {
@@ -17,6 +18,7 @@ const Contact: React.FC<ContactProps> = ({ analytics }) => {
     analytics?.trackResumeDownload();
     window.open(resumeLink, '_blank');
   };
+
 
   const contactMethods = [
     {
@@ -73,51 +75,62 @@ const Contact: React.FC<ContactProps> = ({ analytics }) => {
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-              {contactMethods.map((method, index) => (
-                <a
-                  key={index}
-                  href={method.link}
-                  target={method.link.startsWith('http') ? '_blank' : '_self'}
-                  rel={method.link.startsWith('http') ? 'noopener noreferrer' : ''}
-                  className={`glass p-6 rounded-2xl hover:shadow-lg hover:shadow-primary/10 transition-all duration-300 transform hover:-translate-y-1 group ${
-                    method.link === '#' ? 'cursor-default' : 'cursor-pointer'
-                  }`}
-                >
-                  <div className="text-center">
-                    <div className="w-16 h-16 bg-gradient-to-r from-primary to-accent rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg group-hover:shadow-primary/20 transition-all duration-300">
-                      <i className={`${method.icon} text-white text-2xl`}></i>
+              {contactMethods.map((method, index) => {
+                const colors = getBrandColors(method.title);
+                return (
+                  <a
+                    key={index}
+                    href={method.link}
+                    target={method.link.startsWith('http') ? '_blank' : '_self'}
+                    rel={method.link.startsWith('http') ? 'noopener noreferrer' : ''}
+                    className={`glass p-6 rounded-2xl hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 group ${
+                      method.link === '#' ? 'cursor-default' : 'cursor-pointer'
+                    }`}
+                    style={{
+                      ['--shadow-color' as any]: method.title === 'LinkedIn' ? '#0077b5' : 
+                                                 method.title === 'GitHub' ? '#24292e' : 
+                                                 method.title === 'Email' ? '#ea4335' : '#3b82f6'
+                    }}
+                  >
+                    <div className="text-center">
+                      <div className={`w-16 h-16 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg transition-all duration-300 ${colors.bg} ${colors.hover}`}>
+                        <i className={`${method.icon} text-2xl ${colors.icon}`}></i>
+                      </div>
+                      <h4 className="font-semibold text-white group-hover:text-primary transition-colors duration-300 mb-2">
+                        {method.title}
+                      </h4>
+                      <p className="text-sm text-gray-400 mb-2">{method.description}</p>
+                      <p className="text-gray-300 text-sm break-all">{method.value}</p>
                     </div>
-                    <h4 className="font-semibold text-white group-hover:text-primary transition-colors duration-300 mb-2">
-                      {method.title}
-                    </h4>
-                    <p className="text-sm text-gray-400 mb-2">{method.description}</p>
-                    <p className="text-gray-300 text-sm break-all">{method.value}</p>
-                  </div>
-                </a>
-              ))}
+                  </a>
+                );
+              })}
             </div>
 
             {/* Social Links */}
             <div className="glass p-8 rounded-2xl text-center">
               <h4 className="text-2xl font-bold mb-8">Follow Me</h4>
               <div className="flex items-center justify-center space-x-8">
-                {socialLinks.map((link) => (
-                  <a
-                    key={link.name}
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex flex-col items-center group"
-                    aria-label={link.name}
-                  >
-                    <div className="w-16 h-16 bg-slate-800 rounded-xl flex items-center justify-center text-gray-400 hover:text-primary hover:bg-primary/10 transition-all duration-300 transform hover:scale-110 mb-2">
-                      <i className={`${link.icon} text-2xl`}></i>
-                    </div>
-                    <span className="text-sm text-gray-400 group-hover:text-primary transition-colors duration-300">
-                      {link.name}
-                    </span>
-                  </a>
-                ))}
+                {socialLinks.map((link) => {
+                  const colors = getBrandColors(link.name);
+                  return (
+                    <a
+                      key={link.name}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex flex-col items-center group"
+                      aria-label={link.name}
+                    >
+                      <div className={`w-16 h-16 rounded-xl flex items-center justify-center transition-all duration-300 transform hover:scale-110 mb-2 shadow-lg ${colors.bg} ${colors.hover}`}>
+                        <i className={`${link.icon} text-2xl ${colors.icon}`}></i>
+                      </div>
+                      <span className="text-sm text-gray-400 group-hover:text-white transition-colors duration-300">
+                        {link.name}
+                      </span>
+                    </a>
+                  );
+                })}
               </div>
             </div>
 
