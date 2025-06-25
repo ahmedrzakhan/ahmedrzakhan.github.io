@@ -9,7 +9,7 @@ export const personalInfo: PersonalInfo = {
   github: "github.com/ahmedrzakhan",
   twitter: "x.com/AhmedRzKhan",
   leetcode: "leetcode.com/u/ahmedrza/",
-  portfolio: "ahmedrzakhan.github.io",
+  portfolio: "ahmdrz.com",
   website: "ahmdrz.com",
 };
 
