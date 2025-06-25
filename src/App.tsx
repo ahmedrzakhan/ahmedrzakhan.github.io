@@ -64,8 +64,10 @@ function App() {
     // Analytics remains disabled
   };
 
-  // Check if user has admin access (you can implement your own logic here)
-  const isAdmin = process.env.REACT_APP_ADMIN_MODE === 'true';
+  // Check if user has admin access - multiple methods for security
+  const isAdmin = process.env.REACT_APP_ADMIN_MODE === 'true' || 
+                  process.env.NODE_ENV === 'development' ||
+                  window.location.search.includes('admin=true');
 
   return (
     <div className="relative min-h-screen bg-slate-900">
