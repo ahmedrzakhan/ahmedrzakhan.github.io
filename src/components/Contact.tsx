@@ -1,5 +1,5 @@
 import React from 'react';
-import { personalInfo, socialLinks } from '../data/portfolio';
+import { personalInfo, socialLinks, resumeLink } from '../data/portfolio';
 
 interface ContactProps {
   analytics?: {
@@ -15,9 +15,7 @@ const Contact: React.FC<ContactProps> = ({ analytics }) => {
 
   const handleResumeDownload = () => {
     analytics?.trackResumeDownload();
-    // Add actual resume download logic here
-    // For now, this is a placeholder
-    window.open('/resume.pdf', '_blank');
+    window.open(resumeLink, '_blank');
   };
 
   const contactMethods = [
