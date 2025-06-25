@@ -7,7 +7,7 @@ export const personalInfo: PersonalInfo = {
   email: "khanahmed925@gmail.com",
   linkedin: "linkedin.com/in/ahmedrza",
   github: "github.com/ahmedrzakhan",
-  twitter: "x.com/AhmedRzKhan",
+  twitter: "x.com/ahdrzkn",
   leetcode: "leetcode.com/u/ahmedrza/",
   portfolio: "ahmdrz.com",
   website: "ahmdrz.com",
@@ -198,7 +198,7 @@ export const socialLinks: SocialLink[] = [
   },
   {
     name: "Twitter",
-    url: "https://x.com/AhmedRzKhan",
+    url: "https://x.com/ahdrzkn",
     icon: "fab fa-twitter",
   },
   {
