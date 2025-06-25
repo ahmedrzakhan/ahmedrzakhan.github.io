@@ -1,7 +1,24 @@
 import React from 'react';
 import { personalInfo, socialLinks } from '../data/portfolio';
 
-const Contact: React.FC = () => {
+interface ContactProps {
+  analytics?: {
+    trackContactFormSubmission: () => void;
+    trackResumeDownload: () => void;
+  };
+}
+
+const Contact: React.FC<ContactProps> = ({ analytics }) => {
+  const handleEmailClick = () => {
+    analytics?.trackContactFormSubmission();
+  };
+
+  const handleResumeDownload = () => {
+    analytics?.trackResumeDownload();
+    // Add actual resume download logic here
+    // For now, this is a placeholder
+    window.open('/resume.pdf', '_blank');
+  };
 
   const contactMethods = [
     {
@@ -112,13 +129,23 @@ const Contact: React.FC = () => {
               <p className="text-gray-300 mb-6">
                 Let's build something amazing together. Reach out and let's discuss your next project!
               </p>
-              <a
-                href={`mailto:${personalInfo.email}`}
-                className="inline-flex items-center bg-gradient-to-r from-primary to-accent text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-primary/25"
-              >
-                <i className="fas fa-envelope mr-3"></i>
-                Get In Touch
-              </a>
+              <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
+                <a
+                  href={`mailto:${personalInfo.email}`}
+                  onClick={handleEmailClick}
+                  className="inline-flex items-center bg-gradient-to-r from-primary to-accent text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-primary/25"
+                >
+                  <i className="fas fa-envelope mr-3"></i>
+                  Get In Touch
+                </a>
+                <button
+                  onClick={handleResumeDownload}
+                  className="inline-flex items-center bg-gradient-to-r from-gray-600 to-gray-700 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-gray-500/25"
+                >
+                  <i className="fas fa-download mr-3"></i>
+                  Download Resume
+                </button>
+              </div>
             </div>
           </div>
         </div>

@@ -59,8 +59,15 @@ const techColors: { [key: string]: { bg: string; text: string; icon?: string } }
   'Postman': { bg: 'bg-[#FF6C37]', text: 'text-white', icon: 'fas fa-paper-plane' },
 };
 
-const Projects: React.FC = () => {
-  const handleProjectClick = (repo: string) => {
+interface ProjectsProps {
+  analytics?: {
+    trackProjectClick: (projectName: string) => void;
+  };
+}
+
+const Projects: React.FC<ProjectsProps> = ({ analytics }) => {
+  const handleProjectClick = (repo: string, title: string) => {
+    analytics?.trackProjectClick(title);
     window.open(`https://${repo}`, '_blank', 'noopener,noreferrer');
   };
 
@@ -93,7 +100,7 @@ const Projects: React.FC = () => {
           {projects.map((project, index) => (
             <div
               key={index}
-              onClick={() => handleProjectClick(project.repo)}
+              onClick={() => handleProjectClick(project.repo, project.title)}
               className="glass p-8 rounded-2xl cursor-pointer group hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 transform hover:-translate-y-2 hover:scale-105"
             >
               <div className="flex items-center mb-6">
