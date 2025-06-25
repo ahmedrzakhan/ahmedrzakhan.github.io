@@ -1,11 +1,15 @@
 -- Ahmed Portfolio Analytics Database Schema
 -- Execute this SQL in your Supabase SQL Editor
+-- 
+-- IMPORTANT: This script is IDEMPOTENT - safe to run multiple times
+-- All CREATE statements use IF NOT EXISTS or OR REPLACE where possible
+-- Policies are dropped and recreated to ensure consistency
 
 -- Enable UUID extension
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 -- Create analytics_events table
-CREATE TABLE analytics_events (
+CREATE TABLE IF NOT EXISTS analytics_events (
   id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
   timestamp TIMESTAMPTZ DEFAULT NOW(),
   event_name TEXT NOT NULL,
@@ -19,7 +23,7 @@ CREATE TABLE analytics_events (
 );
 
 -- Create visitor_data table
-CREATE TABLE visitor_data (
+CREATE TABLE IF NOT EXISTS visitor_data (
   id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
   timestamp TIMESTAMPTZ DEFAULT NOW(),
   page_path TEXT NOT NULL,
@@ -36,7 +40,7 @@ CREATE TABLE visitor_data (
 );
 
 -- Create session_data table
-CREATE TABLE session_data (
+CREATE TABLE IF NOT EXISTS session_data (
   session_id TEXT PRIMARY KEY,
   start_time TIMESTAMPTZ NOT NULL,
   end_time TIMESTAMPTZ,
@@ -52,7 +56,7 @@ CREATE TABLE session_data (
 );
 
 -- Create performance_metrics table
-CREATE TABLE performance_metrics (
+CREATE TABLE IF NOT EXISTS performance_metrics (
   id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
   timestamp TIMESTAMPTZ DEFAULT NOW(),
   session_id TEXT NOT NULL,
@@ -68,7 +72,7 @@ CREATE TABLE performance_metrics (
 );
 
 -- Create analytics_errors table
-CREATE TABLE analytics_errors (
+CREATE TABLE IF NOT EXISTS analytics_errors (
   id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
   timestamp TIMESTAMPTZ DEFAULT NOW(),
   error_type TEXT NOT NULL,
@@ -82,7 +86,7 @@ CREATE TABLE analytics_errors (
 );
 
 -- Create ab_test_events table for A/B testing
-CREATE TABLE ab_test_events (
+CREATE TABLE IF NOT EXISTS ab_test_events (
   id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
   test_id TEXT NOT NULL,
   variant_id TEXT NOT NULL,
@@ -94,7 +98,7 @@ CREATE TABLE ab_test_events (
 );
 
 -- Create real_time_visitors table for real-time tracking
-CREATE TABLE real_time_visitors (
+CREATE TABLE IF NOT EXISTS real_time_visitors (
   id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
   session_id TEXT UNIQUE NOT NULL,
   last_seen TIMESTAMPTZ DEFAULT NOW(),
@@ -105,32 +109,32 @@ CREATE TABLE real_time_visitors (
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
--- Create indexes for better performance
-CREATE INDEX idx_analytics_events_timestamp ON analytics_events (timestamp);
-CREATE INDEX idx_analytics_events_session_id ON analytics_events (session_id);
-CREATE INDEX idx_analytics_events_event_name ON analytics_events (event_name);
-CREATE INDEX idx_analytics_events_page_path ON analytics_events (page_path);
+-- Create indexes for better performance (IF NOT EXISTS for PostgreSQL 9.5+)
+CREATE INDEX IF NOT EXISTS idx_analytics_events_timestamp ON analytics_events (timestamp);
+CREATE INDEX IF NOT EXISTS idx_analytics_events_session_id ON analytics_events (session_id);
+CREATE INDEX IF NOT EXISTS idx_analytics_events_event_name ON analytics_events (event_name);
+CREATE INDEX IF NOT EXISTS idx_analytics_events_page_path ON analytics_events (page_path);
 
-CREATE INDEX idx_visitor_data_timestamp ON visitor_data (timestamp);
-CREATE INDEX idx_visitor_data_session_id ON visitor_data (session_id);
-CREATE INDEX idx_visitor_data_page_path ON visitor_data (page_path);
+CREATE INDEX IF NOT EXISTS idx_visitor_data_timestamp ON visitor_data (timestamp);
+CREATE INDEX IF NOT EXISTS idx_visitor_data_session_id ON visitor_data (session_id);
+CREATE INDEX IF NOT EXISTS idx_visitor_data_page_path ON visitor_data (page_path);
 
-CREATE INDEX idx_session_data_start_time ON session_data (start_time);
-CREATE INDEX idx_session_data_duration ON session_data (duration);
+CREATE INDEX IF NOT EXISTS idx_session_data_start_time ON session_data (start_time);
+CREATE INDEX IF NOT EXISTS idx_session_data_duration ON session_data (duration);
 
-CREATE INDEX idx_performance_metrics_timestamp ON performance_metrics (timestamp);
-CREATE INDEX idx_performance_metrics_session_id ON performance_metrics (session_id);
-CREATE INDEX idx_performance_metrics_page_path ON performance_metrics (page_path);
+CREATE INDEX IF NOT EXISTS idx_performance_metrics_timestamp ON performance_metrics (timestamp);
+CREATE INDEX IF NOT EXISTS idx_performance_metrics_session_id ON performance_metrics (session_id);
+CREATE INDEX IF NOT EXISTS idx_performance_metrics_page_path ON performance_metrics (page_path);
 
-CREATE INDEX idx_analytics_errors_timestamp ON analytics_errors (timestamp);
-CREATE INDEX idx_analytics_errors_error_type ON analytics_errors (error_type);
-CREATE INDEX idx_analytics_errors_session_id ON analytics_errors (session_id);
+CREATE INDEX IF NOT EXISTS idx_analytics_errors_timestamp ON analytics_errors (timestamp);
+CREATE INDEX IF NOT EXISTS idx_analytics_errors_error_type ON analytics_errors (error_type);
+CREATE INDEX IF NOT EXISTS idx_analytics_errors_session_id ON analytics_errors (session_id);
 
-CREATE INDEX idx_ab_test_events_test_id ON ab_test_events (test_id);
-CREATE INDEX idx_ab_test_events_timestamp ON ab_test_events (timestamp);
+CREATE INDEX IF NOT EXISTS idx_ab_test_events_test_id ON ab_test_events (test_id);
+CREATE INDEX IF NOT EXISTS idx_ab_test_events_timestamp ON ab_test_events (timestamp);
 
-CREATE INDEX idx_real_time_visitors_last_seen ON real_time_visitors (last_seen);
-CREATE INDEX idx_real_time_visitors_session_id ON real_time_visitors (session_id);
+CREATE INDEX IF NOT EXISTS idx_real_time_visitors_last_seen ON real_time_visitors (last_seen);
+CREATE INDEX IF NOT EXISTS idx_real_time_visitors_session_id ON real_time_visitors (session_id);
 
 -- Enable Row Level Security (RLS)
 ALTER TABLE analytics_events ENABLE ROW LEVEL SECURITY;
@@ -142,57 +146,88 @@ ALTER TABLE ab_test_events ENABLE ROW LEVEL SECURITY;
 ALTER TABLE real_time_visitors ENABLE ROW LEVEL SECURITY;
 
 -- Create policies for public insert access (anonymous users can track)
-CREATE POLICY "Allow public inserts on analytics_events" ON analytics_events
-  FOR INSERT TO PUBLIC WITH CHECK (true);
+-- Drop existing policies if they exist, then recreate them
+DO $$ 
+BEGIN
+  -- Drop and recreate policies for analytics_events
+  DROP POLICY IF EXISTS "Allow public inserts on analytics_events" ON analytics_events;
+  CREATE POLICY "Allow public inserts on analytics_events" ON analytics_events
+    FOR INSERT TO PUBLIC WITH CHECK (true);
 
-CREATE POLICY "Allow public inserts on visitor_data" ON visitor_data
-  FOR INSERT TO PUBLIC WITH CHECK (true);
+  -- Drop and recreate policies for visitor_data
+  DROP POLICY IF EXISTS "Allow public inserts on visitor_data" ON visitor_data;
+  CREATE POLICY "Allow public inserts on visitor_data" ON visitor_data
+    FOR INSERT TO PUBLIC WITH CHECK (true);
 
-CREATE POLICY "Allow public inserts on session_data" ON session_data
-  FOR INSERT TO PUBLIC WITH CHECK (true);
+  -- Drop and recreate policies for session_data
+  DROP POLICY IF EXISTS "Allow public inserts on session_data" ON session_data;
+  CREATE POLICY "Allow public inserts on session_data" ON session_data
+    FOR INSERT TO PUBLIC WITH CHECK (true);
 
-CREATE POLICY "Allow public upserts on session_data" ON session_data
-  FOR UPDATE TO PUBLIC USING (true) WITH CHECK (true);
+  DROP POLICY IF EXISTS "Allow public upserts on session_data" ON session_data;
+  CREATE POLICY "Allow public upserts on session_data" ON session_data
+    FOR UPDATE TO PUBLIC USING (true) WITH CHECK (true);
 
-CREATE POLICY "Allow public inserts on performance_metrics" ON performance_metrics
-  FOR INSERT TO PUBLIC WITH CHECK (true);
+  -- Drop and recreate policies for performance_metrics
+  DROP POLICY IF EXISTS "Allow public inserts on performance_metrics" ON performance_metrics;
+  CREATE POLICY "Allow public inserts on performance_metrics" ON performance_metrics
+    FOR INSERT TO PUBLIC WITH CHECK (true);
 
-CREATE POLICY "Allow public inserts on analytics_errors" ON analytics_errors
-  FOR INSERT TO PUBLIC WITH CHECK (true);
+  -- Drop and recreate policies for analytics_errors
+  DROP POLICY IF EXISTS "Allow public inserts on analytics_errors" ON analytics_errors;
+  CREATE POLICY "Allow public inserts on analytics_errors" ON analytics_errors
+    FOR INSERT TO PUBLIC WITH CHECK (true);
 
-CREATE POLICY "Allow public inserts on ab_test_events" ON ab_test_events
-  FOR INSERT TO PUBLIC WITH CHECK (true);
+  -- Drop and recreate policies for ab_test_events
+  DROP POLICY IF EXISTS "Allow public inserts on ab_test_events" ON ab_test_events;
+  CREATE POLICY "Allow public inserts on ab_test_events" ON ab_test_events
+    FOR INSERT TO PUBLIC WITH CHECK (true);
 
-CREATE POLICY "Allow public upserts on real_time_visitors" ON real_time_visitors
-  FOR INSERT TO PUBLIC WITH CHECK (true);
+  -- Drop and recreate policies for real_time_visitors
+  DROP POLICY IF EXISTS "Allow public upserts on real_time_visitors" ON real_time_visitors;
+  CREATE POLICY "Allow public upserts on real_time_visitors" ON real_time_visitors
+    FOR INSERT TO PUBLIC WITH CHECK (true);
 
-CREATE POLICY "Allow public updates on real_time_visitors" ON real_time_visitors
-  FOR UPDATE TO PUBLIC USING (true) WITH CHECK (true);
+  DROP POLICY IF EXISTS "Allow public updates on real_time_visitors" ON real_time_visitors;
+  CREATE POLICY "Allow public updates on real_time_visitors" ON real_time_visitors
+    FOR UPDATE TO PUBLIC USING (true) WITH CHECK (true);
+END $$;
 
 -- Create policies for read access (you can restrict this further)
 -- For now, allowing public read access for dashboard functionality
 -- In production, you may want to restrict this to authenticated admin users
 
-CREATE POLICY "Allow public read access on analytics_events" ON analytics_events
-  FOR SELECT TO PUBLIC USING (true);
+DO $$ 
+BEGIN
+  -- Drop and recreate read policies
+  DROP POLICY IF EXISTS "Allow public read access on analytics_events" ON analytics_events;
+  CREATE POLICY "Allow public read access on analytics_events" ON analytics_events
+    FOR SELECT TO PUBLIC USING (true);
 
-CREATE POLICY "Allow public read access on visitor_data" ON visitor_data
-  FOR SELECT TO PUBLIC USING (true);
+  DROP POLICY IF EXISTS "Allow public read access on visitor_data" ON visitor_data;
+  CREATE POLICY "Allow public read access on visitor_data" ON visitor_data
+    FOR SELECT TO PUBLIC USING (true);
 
-CREATE POLICY "Allow public read access on session_data" ON session_data
-  FOR SELECT TO PUBLIC USING (true);
+  DROP POLICY IF EXISTS "Allow public read access on session_data" ON session_data;
+  CREATE POLICY "Allow public read access on session_data" ON session_data
+    FOR SELECT TO PUBLIC USING (true);
 
-CREATE POLICY "Allow public read access on performance_metrics" ON performance_metrics
-  FOR SELECT TO PUBLIC USING (true);
+  DROP POLICY IF EXISTS "Allow public read access on performance_metrics" ON performance_metrics;
+  CREATE POLICY "Allow public read access on performance_metrics" ON performance_metrics
+    FOR SELECT TO PUBLIC USING (true);
 
-CREATE POLICY "Allow public read access on analytics_errors" ON analytics_errors
-  FOR SELECT TO PUBLIC USING (true);
+  DROP POLICY IF EXISTS "Allow public read access on analytics_errors" ON analytics_errors;
+  CREATE POLICY "Allow public read access on analytics_errors" ON analytics_errors
+    FOR SELECT TO PUBLIC USING (true);
 
-CREATE POLICY "Allow public read access on ab_test_events" ON ab_test_events
-  FOR SELECT TO PUBLIC USING (true);
+  DROP POLICY IF EXISTS "Allow public read access on ab_test_events" ON ab_test_events;
+  CREATE POLICY "Allow public read access on ab_test_events" ON ab_test_events
+    FOR SELECT TO PUBLIC USING (true);
 
-CREATE POLICY "Allow public read access on real_time_visitors" ON real_time_visitors
-  FOR SELECT TO PUBLIC USING (true);
+  DROP POLICY IF EXISTS "Allow public read access on real_time_visitors" ON real_time_visitors;
+  CREATE POLICY "Allow public read access on real_time_visitors" ON real_time_visitors
+    FOR SELECT TO PUBLIC USING (true);
+END $$;
 
 -- Create functions for analytics aggregations
 CREATE OR REPLACE FUNCTION get_dashboard_stats(days_back INTEGER DEFAULT 30)
@@ -323,10 +358,16 @@ END;
 $$ LANGUAGE plpgsql;
 
 -- Create trigger for visitor_data
-CREATE TRIGGER trigger_update_session_stats
-  AFTER INSERT ON visitor_data
-  FOR EACH ROW
-  EXECUTE FUNCTION update_session_stats();
+-- Create trigger only if it doesn't exist
+DO $$
+BEGIN
+  IF NOT EXISTS (SELECT 1 FROM pg_trigger WHERE tgname = 'trigger_update_session_stats') THEN
+    CREATE TRIGGER trigger_update_session_stats
+      AFTER INSERT ON visitor_data
+      FOR EACH ROW
+      EXECUTE FUNCTION update_session_stats();
+  END IF;
+END $$;
 
 -- Create trigger to update event counts
 CREATE OR REPLACE FUNCTION update_session_event_count()
@@ -342,10 +383,16 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER trigger_update_session_event_count
-  AFTER INSERT ON analytics_events
-  FOR EACH ROW
-  EXECUTE FUNCTION update_session_event_count();
+-- Create trigger only if it doesn't exist
+DO $$
+BEGIN
+  IF NOT EXISTS (SELECT 1 FROM pg_trigger WHERE tgname = 'trigger_update_session_event_count') THEN
+    CREATE TRIGGER trigger_update_session_event_count
+      AFTER INSERT ON analytics_events
+      FOR EACH ROW
+      EXECUTE FUNCTION update_session_event_count();
+  END IF;
+END $$;
 
 -- Grant necessary permissions to anon role (for public access)
 GRANT USAGE ON SCHEMA public TO anon;
@@ -364,6 +411,8 @@ GRANT EXECUTE ON ALL FUNCTIONS IN SCHEMA public TO anon;
 -- );
 
 -- Optional: Create materialized views for better dashboard performance
+-- Drop and recreate materialized view to handle existing views
+DROP MATERIALIZED VIEW IF EXISTS mv_daily_stats;
 CREATE MATERIALIZED VIEW mv_daily_stats AS
 SELECT 
   DATE_TRUNC('day', timestamp) as date,
@@ -376,7 +425,7 @@ GROUP BY DATE_TRUNC('day', timestamp)
 ORDER BY date;
 
 -- Create index on materialized view
-CREATE INDEX idx_mv_daily_stats_date ON mv_daily_stats (date);
+CREATE INDEX IF NOT EXISTS idx_mv_daily_stats_date ON mv_daily_stats (date);
 
 -- Create a function to refresh materialized views
 CREATE OR REPLACE FUNCTION refresh_analytics_views()
