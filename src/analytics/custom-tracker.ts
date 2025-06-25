@@ -72,17 +72,9 @@ class CustomTracker {
   }
 
   private async getGeoLocation(): Promise<{ country?: string; city?: string }> {
-    try {
-      const response = await fetch('https://ipapi.co/json/');
-      const data = await response.json();
-      return {
-        country: data.country_name,
-        city: data.city,
-      };
-    } catch (error) {
-      console.warn('Could not get geo location:', error);
-      return {};
-    }
+    // Skip geo location to avoid CORS issues
+    // This can be enabled later with a proper backend proxy
+    return {};
   }
 
   enable(): void {
@@ -112,7 +104,7 @@ class CustomTracker {
       };
 
       const { error } = await this.supabase
-        .from('visits')
+        .from('visitor_data')
         .insert([visitData]);
 
       if (error) {
@@ -138,7 +130,7 @@ class CustomTracker {
       };
 
       const { error } = await this.supabase
-        .from('events')
+        .from('analytics_events')
         .insert([event]);
 
       if (error) {
@@ -176,7 +168,7 @@ class CustomTracker {
       };
 
       const { error } = await this.supabase
-        .from('sessions')
+        .from('session_data')
         .insert([sessionData]);
 
       if (error) {
@@ -193,7 +185,7 @@ class CustomTracker {
 
     try {
       const { data, error } = await this.supabase
-        .from('visits')
+        .from('visitor_data')
         .select('*')
         .gte('timestamp', new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString());
 
@@ -214,7 +206,7 @@ class CustomTracker {
 
     try {
       const { data, error } = await this.supabase
-        .from('events')
+        .from('analytics_events')
         .select('*')
         .gte('timestamp', new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString());
 
@@ -235,7 +227,7 @@ class CustomTracker {
 
     try {
       const { data, error } = await this.supabase
-        .from('visits')
+        .from('visitor_data')
         .select('page_path, page_title')
         .gte('timestamp', new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString());
 
