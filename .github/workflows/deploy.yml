@@ -1,20 +1,67 @@
+# .github/workflows/deploy.yml
 name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [master]
+    branches: [master, main] # Added main branch support
+  pull_request:
+    branches: [master, main] # Optional: deploy previews
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - name: Checkout repository
+        uses: actions/checkout@v4 # Updated to latest version
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4 # Updated to latest version
         with:
-          node-version: "16"
-      - run: npm ci
-      - run: npm run build
-      - uses: peaceiris/actions-gh-pages@v3
+          node-version: "18" # Updated to Node 18 (16 is EOL)
+          cache: "npm" # Enable npm caching for faster builds
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build application
+        run: npm run build
+        env:
+          # SECRETS (Sensitive Data)
+          REACT_APP_GA_ID: ${{ secrets.REACT_APP_GA_ID }}
+          REACT_APP_SUPABASE_URL: ${{ secrets.REACT_APP_SUPABASE_URL }}
+          REACT_APP_SUPABASE_ANON_KEY: ${{ secrets.REACT_APP_SUPABASE_ANON_KEY }}
+          REACT_APP_IPAPI_KEY: ${{ secrets.REACT_APP_IPAPI_KEY }}
+          REACT_APP_MAXMIND_LICENSE_KEY: ${{ secrets.REACT_APP_MAXMIND_LICENSE_KEY }}
+          REACT_APP_AUTHOR_EMAIL: ${{ secrets.REACT_APP_AUTHOR_EMAIL }}
+
+          # VARIABLES (Public Configuration)
+          REACT_APP_ADMIN_MODE: ${{ vars.REACT_APP_ADMIN_MODE }}
+          REACT_APP_ENABLE_OFFLINE_TRACKING: ${{ vars.REACT_APP_ENABLE_OFFLINE_TRACKING }}
+          REACT_APP_ENABLE_PERFORMANCE_MONITORING: ${{ vars.REACT_APP_ENABLE_PERFORMANCE_MONITORING }}
+          REACT_APP_ENABLE_ERROR_TRACKING: ${{ vars.REACT_APP_ENABLE_ERROR_TRACKING }}
+          REACT_APP_ENABLE_AB_TESTING: ${{ vars.REACT_APP_ENABLE_AB_TESTING }}
+          REACT_APP_DEBUG_ANALYTICS: ${{ vars.REACT_APP_DEBUG_ANALYTICS }}
+          REACT_APP_ANALYTICS_SAMPLING_RATE: ${{ vars.REACT_APP_ANALYTICS_SAMPLING_RATE }}
+          REACT_APP_ANALYTICS_SESSION_TIMEOUT: ${{ vars.REACT_APP_ANALYTICS_SESSION_TIMEOUT }}
+          REACT_APP_ANALYTICS_MAX_RETRIES: ${{ vars.REACT_APP_ANALYTICS_MAX_RETRIES }}
+          REACT_APP_ANALYTICS_BATCH_SIZE: ${{ vars.REACT_APP_ANALYTICS_BATCH_SIZE }}
+          REACT_APP_ANALYTICS_FLUSH_INTERVAL: ${{ vars.REACT_APP_ANALYTICS_FLUSH_INTERVAL }}
+          REACT_APP_PRIVACY_POLICY_URL: ${{ vars.REACT_APP_PRIVACY_POLICY_URL }}
+          REACT_APP_COOKIE_CONSENT_VERSION: ${{ vars.REACT_APP_COOKIE_CONSENT_VERSION }}
+          REACT_APP_DATA_RETENTION_DAYS: ${{ vars.REACT_APP_DATA_RETENTION_DAYS }}
+          REACT_APP_SITE_URL: ${{ vars.REACT_APP_SITE_URL }}
+          REACT_APP_SITE_NAME: ${{ vars.REACT_APP_SITE_NAME }}
+          REACT_APP_SITE_DESCRIPTION: ${{ vars.REACT_APP_SITE_DESCRIPTION }}
+
+          # Build optimization
+          GENERATE_SOURCEMAP: false # Disable source maps for production
+          CI: false # Prevent treating warnings as errors
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
+          cname: ${{ secrets.REACT_APP_SITE_URL }} # Optional: if using custom domain
