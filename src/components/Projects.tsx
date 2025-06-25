@@ -1,6 +1,64 @@
 import React from 'react';
 import { projects } from '../data/portfolio';
 
+// Brand colors for technologies (shared with Skills component)
+const techColors: { [key: string]: { bg: string; text: string; icon?: string } } = {
+  // Programming Languages
+  'Python': { bg: 'bg-[#3776AB]', text: 'text-white', icon: 'fab fa-python' },
+  'Go': { bg: 'bg-[#00ADD8]', text: 'text-white', icon: 'fab fa-golang' },
+  'JavaScript/TypeScript': { bg: 'bg-[#F7DF1E]', text: 'text-black', icon: 'fab fa-js' },
+  'TypeScript': { bg: 'bg-[#007ACC]', text: 'text-white', icon: 'fab fa-js' },
+  'JavaScript': { bg: 'bg-[#F7DF1E]', text: 'text-black', icon: 'fab fa-js' },
+  
+  // AI/ML
+  'OpenAI': { bg: 'bg-[#412991]', text: 'text-white', icon: 'fas fa-brain' },
+  'Google Gemini': { bg: 'bg-[#4285F4]', text: 'text-white', icon: 'fab fa-google' },
+  'LangChain': { bg: 'bg-[#1C3C3C]', text: 'text-white', icon: 'fas fa-link' },
+  'ChromaDB': { bg: 'bg-[#FF6B6B]', text: 'text-white', icon: 'fas fa-database' },
+  'HuggingFace': { bg: 'bg-[#FFD21E]', text: 'text-black', icon: 'fas fa-robot' },
+  'Transformers': { bg: 'bg-[#FF6F00]', text: 'text-white', icon: 'fas fa-cogs' },
+  'T5-small': { bg: 'bg-[#FF6F00]', text: 'text-white', icon: 'fas fa-brain' },
+  'CodeBERT': { bg: 'bg-[#FFD21E]', text: 'text-black', icon: 'fas fa-code' },
+  'LangSmith': { bg: 'bg-[#1C3C3C]', text: 'text-white', icon: 'fas fa-chart-line' },
+  
+  // Backend
+  'FastAPI': { bg: 'bg-[#009688]', text: 'text-white', icon: 'fas fa-rocket' },
+  'Node.js': { bg: 'bg-[#339933]', text: 'text-white', icon: 'fab fa-node-js' },
+  'Express.js': { bg: 'bg-[#000000]', text: 'text-white', icon: 'fas fa-server' },
+  'NestJS': { bg: 'bg-[#E0234E]', text: 'text-white', icon: 'fas fa-cube' },
+  'Go Fiber': { bg: 'bg-[#00ADD8]', text: 'text-white', icon: 'fas fa-bolt' },
+  'Streamlit': { bg: 'bg-[#FF4B4B]', text: 'text-white', icon: 'fas fa-chart-bar' },
+  
+  // Frontend
+  'React.js': { bg: 'bg-[#61DAFB]', text: 'text-black', icon: 'fab fa-react' },
+  'React': { bg: 'bg-[#61DAFB]', text: 'text-black', icon: 'fab fa-react' },
+  'Next.js': { bg: 'bg-[#000000]', text: 'text-white', icon: 'fas fa-arrow-right' },
+  'Tailwind CSS': { bg: 'bg-[#38B2AC]', text: 'text-white', icon: 'fas fa-wind' },
+  'Redux': { bg: 'bg-[#764ABC]', text: 'text-white', icon: 'fas fa-layer-group' },
+  'styled-components': { bg: 'bg-[#DB7093]', text: 'text-white', icon: 'fas fa-palette' },
+  'React Native': { bg: 'bg-[#61DAFB]', text: 'text-black', icon: 'fab fa-react' },
+  'HTML5': { bg: 'bg-[#E34F26]', text: 'text-white', icon: 'fab fa-html5' },
+  'CSS3': { bg: 'bg-[#1572B6]', text: 'text-white', icon: 'fab fa-css3-alt' },
+  
+  // Databases
+  'PostgreSQL': { bg: 'bg-[#336791]', text: 'text-white', icon: 'fas fa-database' },
+  'MongoDB': { bg: 'bg-[#47A248]', text: 'text-white', icon: 'fas fa-leaf' },
+  'Redis': { bg: 'bg-[#DC382D]', text: 'text-white', icon: 'fas fa-memory' },
+  'Elasticsearch': { bg: 'bg-[#005571]', text: 'text-white', icon: 'fas fa-search' },
+  
+  // Cloud & DevOps
+  'AWS': { bg: 'bg-[#FF9900]', text: 'text-black', icon: 'fab fa-aws' },
+  'Docker': { bg: 'bg-[#2496ED]', text: 'text-white', icon: 'fab fa-docker' },
+  'Google Cloud': { bg: 'bg-[#4285F4]', text: 'text-white', icon: 'fab fa-google' },
+  'Jenkins': { bg: 'bg-[#D24939]', text: 'text-white', icon: 'fas fa-hammer' },
+  'Nginx': { bg: 'bg-[#009639]', text: 'text-white', icon: 'fas fa-shield-alt' },
+  
+  // Tools
+  'Apache Kafka': { bg: 'bg-[#231F20]', text: 'text-white', icon: 'fas fa-stream' },
+  'Git': { bg: 'bg-[#F05032]', text: 'text-white', icon: 'fab fa-git-alt' },
+  'Postman': { bg: 'bg-[#FF6C37]', text: 'text-white', icon: 'fas fa-paper-plane' },
+};
+
 const Projects: React.FC = () => {
   const handleProjectClick = (repo: string) => {
     window.open(`https://${repo}`, '_blank', 'noopener,noreferrer');
@@ -58,14 +116,20 @@ const Projects: React.FC = () => {
               </p>
 
               <div className="flex flex-wrap gap-2 mb-6">
-                {project.tech.split(', ').map((tech, techIndex) => (
-                  <span
-                    key={techIndex}
-                    className="px-3 py-1 bg-primary/20 text-primary text-sm rounded-full border border-primary/30"
-                  >
-                    {tech}
-                  </span>
-                ))}
+                {project.tech.split(', ').map((tech, techIndex) => {
+                  const techStyle = techColors[tech] || { bg: 'bg-primary/20', text: 'text-primary' };
+                  return (
+                    <span
+                      key={techIndex}
+                      className={`px-3 py-1 ${techStyle.bg} ${techStyle.text} text-sm rounded-full font-medium hover:scale-105 transition-all duration-200 cursor-default shadow-sm hover:shadow-md flex items-center gap-1.5`}
+                    >
+                      {techStyle.icon && (
+                        <i className={`${techStyle.icon} text-xs`}></i>
+                      )}
+                      {tech}
+                    </span>
+                  );
+                })}
               </div>
 
               <div className="flex items-center justify-between">
