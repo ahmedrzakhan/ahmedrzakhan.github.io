@@ -169,7 +169,9 @@ class CustomTracker {
 
       const { error } = await this.supabase
         .from('session_data')
-        .insert([sessionData]);
+        .upsert([sessionData], { 
+          onConflict: 'session_id' 
+        });
 
       if (error) {
         console.error('Error ending session:', error);
