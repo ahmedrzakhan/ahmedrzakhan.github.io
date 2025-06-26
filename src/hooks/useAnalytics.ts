@@ -1,7 +1,7 @@
 import { useEffect, useRef, useCallback } from 'react';
 import Cookies from 'js-cookie';
 import GoogleAnalytics, { GAEvent, GAPageView, GACustomEvent } from '../analytics/google-analytics';
-import CustomTracker from '../analytics/custom-tracker';
+import EnhancedCustomTracker from '../analytics/enhanced-custom-tracker';
 
 interface AnalyticsConfig {
   gaId?: string;
@@ -22,7 +22,7 @@ interface UseAnalyticsReturn {
 
 const useAnalytics = (config: AnalyticsConfig): UseAnalyticsReturn => {
   const gaRef = useRef<GoogleAnalytics | null>(null);
-  const customTrackerRef = useRef<CustomTracker | null>(null);
+  const customTrackerRef = useRef<EnhancedCustomTracker | null>(null);
   const isTrackingEnabled = Cookies.get('analytics-consent') === 'true';
   const pageStartTimeRef = useRef<number>(Date.now());
 
@@ -37,7 +37,7 @@ const useAnalytics = (config: AnalyticsConfig): UseAnalyticsReturn => {
 
       // Initialize Custom Tracker
       if (config.supabaseUrl && config.supabaseKey && !customTrackerRef.current) {
-        customTrackerRef.current = new CustomTracker(config.supabaseUrl, config.supabaseKey);
+        customTrackerRef.current = new EnhancedCustomTracker(config.supabaseUrl, config.supabaseKey);
         customTrackerRef.current.enable();
       }
     } else {
