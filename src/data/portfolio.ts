@@ -30,9 +30,8 @@ export const experiences: Experience[] = [
     duration: "May 2025 - Present",
     location: "Remote",
     description: [
-      "Platform Leadership: Spearheaded full-stack development of a Zakat platform using Next.js (TypeScript) and Python FastAPI with PostgreSQL",
-      "Authentication: Designed secure authentication with Google, Apple, and password-based login",
-      "UI Development: Built responsive UI using Tailwind CSS, Redux Toolkit, and Jest for testing",
+      "Platform Leadership: Spearheaded full-stack development of a Zakat platform, delivering scalable solutions for accurate Zakat calculations and contribution tracking",
+      "Authentication and UI: Designed secure authentication with multiple providers and built responsive user interface with comprehensive testing framework",
     ],
   },
   {
@@ -41,9 +40,9 @@ export const experiences: Experience[] = [
     duration: "Oct 2024 - Feb 2025",
     location: "Dubai, UAE, Remote",
     description: [
-      "Backend Architecture Leadership: Architected comprehensive authentication system and core services",
-      "API Development & Integration: Designed robust enterprise-grade APIs",
-      "Technical Infrastructure Development: Engineered scalable cloud-based backend infrastructure",
+      "Backend Architecture Leadership: Architected and implemented comprehensive authentication system and core services, enabling seamless connection between local businesses and consumers",
+      "API Development & Integration: Designed robust enterprise-grade APIs supporting user engagement features and internal admin systems",
+      "Technical Infrastructure: Engineered scalable cloud-based backend infrastructure ensuring high availability and performance",
     ],
   },
   {
@@ -53,13 +52,12 @@ export const experiences: Experience[] = [
     location: "Bengaluru, India",
     type: "Backend Role (Oct 2021 - Jul 2024)",
     description: [
-      "Automated Order Execution: Built an automated order processing system to address financial delays, increasing order fulfillment and contributing to $2M monthly revenue",
+      "Automatic Order Execution: Built an automated order processing system to address financial delays, increasing order fulfillment and contributing to a 2 million dollars monthly revenue gain",
       "Gateway Transactions: Revamped gateway systems to integrate mutual fund transactions with 265 external smallcase partners, significantly expanding service accessibility",
-      "Enable MF Transactions: Developed and integrated mutual fund transaction functionality, enabling 5 million users to access these services",
-      "Real Time Notification: Successfully addressed bottleneck in critical communication notification system, leading to 78% reduction in processing time",
+      "Enable MF Transactions: Developed and integrated mutual fund transaction functionality, enabling 5 million users to access these services and expanding the offerings",
+      "Real Time Notification: Successfully addressed a bottleneck in the critical communication notification system, leading to a 78% reduction in processing time",
       "Lead Generation Service: Enhanced lead generation service, integrating customer support systems and increasing first-time investor/subscriber conversions by 2K users monthly",
-      "Domain Driven Design: Refactored multiple backend services to prioritize maintainability and eliminate redundancy, streamlining future development efforts",
-      "Subscription Management: Designed and integrated subscription renewal feature, offering intuitive management tools for streamlined user experience",
+      "Domain Driven Design: Refactored multiple backend services to prioritize maintainability and eliminate redundancy streamlining future development efforts",
     ],
   },
   {
@@ -69,10 +67,11 @@ export const experiences: Experience[] = [
     location: "Bengaluru, India",
     type: "Frontend Role",
     description: [
+      "Subscription Management: Designed and integrated a subscription renewal feature, offering intuitive management tools for a streamlined and user-friendly experience",
       "Goal based Investments: Led the development of Horizon Smallcases, a financial planning tool that aligns long-term goals with investment strategies, currently used by 400K users",
       "Profile Interface: Redesigned smallcase profiles to enhance navigation and data presentation, facilitating user engagement and decision-making clarity",
-      "Ability to modify user details: Expanded user profiles with phone, email, and WhatsApp consent fields, leading to 75% increase in click rate and improved engagement",
-      "User Onboarding: Streamlined user onboarding with a new feature, providing clear guidance and driving 85% click rate for enhanced engagement",
+      "Ability to modify user details: Expanded user profiles with phone, email, and WhatsApp consent fields, leading to a 75% increase in click rate and improved engagement",
+      "User Onboarding: Streamlined user onboarding with a new feature, providing clear guidance and driving a 85% click rate for enhanced engagement",
     ],
   },
   {
@@ -91,7 +90,7 @@ export const experiences: Experience[] = [
     duration: "Aug 2019 - Mar 2020",
     location: "Pune, India",
     description: [
-      "Employee Self Service: Designed a custom Employee self-service mobile app tailored for Tata Motors, simplifying HR processes for 50K employees",
+      "Employment Self Service: Designed a custom Employee self service mobile app tailored for Tata Motors, simplifying HR processes for 50K employees",
       "Driver Management Service: Designed and implemented the registration process and a driver rating system tailored for Drivers in India, used by 70K users",
     ],
   },
