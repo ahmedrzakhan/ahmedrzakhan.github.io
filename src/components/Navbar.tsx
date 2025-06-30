@@ -17,7 +17,7 @@ const Navbar: React.FC = () => {
 
   useEffect(() => {
     let ticking = false;
-    
+
     const handleScroll = () => {
       if (!ticking) {
         requestAnimationFrame(() => {
@@ -51,10 +51,9 @@ const Navbar: React.FC = () => {
             {/* Animated Profile Picture */}
             {personalInfo.avatar && (
               <div
-                className={`transition-all duration-300 ease-out overflow-hidden ${
-                  showProfilePic
-                    ? 'opacity-100 w-8 mr-0'
-                    : 'opacity-0 w-0 mr-0'
+                className={`transition-all duration-300 ease-out overflow-hidden ${showProfilePic
+                  ? 'opacity-100 w-8 mr-0'
+                  : 'opacity-0 w-0 mr-0'
                   }`}
               >
                 <img
@@ -66,9 +65,9 @@ const Navbar: React.FC = () => {
             )}
             <button
               onClick={() => scrollToSection('#home')}
-              className="text-2xl font-bold gradient-text hover:scale-105 transition-transform duration-200"
+              className="text-2xl font-medium gradient-text hover:scale-105 transition-transform duration-200"
             >
-              ARK
+              ARZ
             </button>
           </div>
 
