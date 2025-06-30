@@ -13,7 +13,7 @@ html {
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   background-color: #0f172a;
   color: #f1f5f9;
   line-height: 1.6;
@@ -29,7 +29,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #2E9EF7;
+  background: #2e9ef7;
   border-radius: 4px;
 }
 
@@ -46,6 +46,14 @@ body {
 
 /* Gradient text */
 .gradient-text {
+  background: linear-gradient(135deg, #2e9ef7 0%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Gradient text */
+.gradient-text-ts {
   background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 50%, #1d4ed8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -56,8 +64,13 @@ body {
 
 /* Particle animation */
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
 }
 
 .floating {
@@ -71,6 +84,12 @@ body {
 }
 
 @keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
 }

@@ -65,7 +65,7 @@ const Navbar: React.FC = () => {
             )}
             <button
               onClick={() => scrollToSection('#home')}
-              className="text-2xl font-medium gradient-text hover:scale-105 transition-transform duration-200"
+              className="text-2xl font-medium gradient-text-ts hover:scale-105 transition-transform duration-200"
             >
               ARZ
             </button>
