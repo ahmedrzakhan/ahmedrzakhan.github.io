@@ -31,6 +31,7 @@ export interface PersonalInfo {
   leetcode: string;
   portfolio: string;
   website: string;
+  avatar?: string;
 }
 
 export interface SocialLink {

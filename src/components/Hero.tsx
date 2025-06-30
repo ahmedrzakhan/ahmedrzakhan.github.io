@@ -11,7 +11,7 @@ const Hero: React.FC = () => {
   useEffect(() => {
     const handleTyping = () => {
       const currentRole = animatedRoles[currentRoleIndex];
-      
+
       if (isDeleting) {
         setCurrentText(prev => prev.substring(0, prev.length - 1));
         setTypeSpeed(75);
@@ -40,14 +40,23 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
         <div className="animate-fade-in">
+          {personalInfo.avatar && (
+            <div className="mt-8 mb-8">
+              <img
+                src={personalInfo.avatar}
+                alt={personalInfo.name}
+                className="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto object-cover border-4 border-primary/50 shadow-2xl hover:border-primary transition-all duration-300 transform hover:scale-105"
+              />
+            </div>
+          )}
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
             <span className="block text-white mb-2">Hi, I'm</span>
             <span className="gradient-text">{personalInfo.name}</span>
           </h1>
-          
+
           <div className="text-2xl md:text-4xl font-semibold mb-8 h-16 flex items-center justify-center">
             <span className="text-gray-300">I'm a </span>
             <span className="text-primary ml-2 min-w-[300px] text-left">
@@ -55,11 +64,11 @@ const Hero: React.FC = () => {
               <span className="typed-cursor">|</span>
             </span>
           </div>
-          
+
           <p className="text-xl md:text-2xl text-gray-400 mb-8 max-w-3xl mx-auto leading-relaxed">
             Specializing in Backend Development and AI/ML technologies with 4.5 years of experience building scalable applications.
           </p>
-          
+
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-12">
             <button
               onClick={() => scrollToSection('#projects')}
@@ -74,7 +83,7 @@ const Hero: React.FC = () => {
               Let's Connect
             </button>
           </div>
-          
+
           <div className="flex items-center justify-center space-x-6">
             {socialLinks.map((link) => {
               const colors = getBrandColors(link.name);
@@ -93,7 +102,7 @@ const Hero: React.FC = () => {
             })}
           </div>
         </div>
-        
+
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
           <button
             onClick={() => scrollToSection('#about')}
@@ -103,12 +112,12 @@ const Hero: React.FC = () => {
           </button>
         </div>
       </div>
-      
+
       {/* Floating elements */}
       <div className="absolute top-20 left-10 w-20 h-20 bg-primary/10 rounded-full floating blur-sm"></div>
-      <div className="absolute top-40 right-10 w-16 h-16 bg-accent/10 rounded-full floating" style={{animationDelay: '2s'}}></div>
-      <div className="absolute bottom-40 left-20 w-12 h-12 bg-primary/10 rounded-full floating" style={{animationDelay: '4s'}}></div>
-      <div className="absolute bottom-20 right-20 w-24 h-24 bg-accent/10 rounded-full floating" style={{animationDelay: '1s'}}></div>
+      <div className="absolute top-40 right-10 w-16 h-16 bg-accent/10 rounded-full floating" style={{ animationDelay: '2s' }}></div>
+      <div className="absolute bottom-40 left-20 w-12 h-12 bg-primary/10 rounded-full floating" style={{ animationDelay: '4s' }}></div>
+      <div className="absolute bottom-20 right-20 w-24 h-24 bg-accent/10 rounded-full floating" style={{ animationDelay: '1s' }}></div>
     </section>
   );
 };

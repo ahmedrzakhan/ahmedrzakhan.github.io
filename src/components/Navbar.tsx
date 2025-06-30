@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { resumeLink } from '../data/portfolio';
+import { resumeLink, personalInfo } from '../data/portfolio';
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showProfilePic, setShowProfilePic] = useState(false);
 
   const navItems = [
     { name: 'Home', href: '#home' },
@@ -16,7 +17,11 @@ const Navbar: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      const scrollY = window.scrollY;
+      setIsScrolled(scrollY > 50);
+
+      // Show profile pic when hero image is out of view (around 300px scroll)
+      setShowProfilePic(scrollY > 200);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -32,12 +37,26 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled ? 'glass py-4' : 'py-6'
-    }`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'glass py-4' : 'py-6'
+      }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 flex items-center space-x-3">
+            {/* Animated Profile Picture */}
+            {personalInfo.avatar && (
+              <div
+                className={`transition-all duration-500 ease-in-out ${showProfilePic
+                  ? 'opacity-100 scale-100 translate-x-0'
+                  : 'opacity-0 scale-0 -translate-x-4'
+                  }`}
+              >
+                <img
+                  src={personalInfo.avatar}
+                  alt={personalInfo.name}
+                  className="w-8 h-8 rounded-full object-cover border-2 border-primary/50 hover:border-primary transition-all duration-300"
+                />
+              </div>
+            )}
             <button
               onClick={() => scrollToSection('#home')}
               className="text-2xl font-bold gradient-text hover:scale-105 transition-transform duration-200"

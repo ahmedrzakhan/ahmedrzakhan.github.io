@@ -3,7 +3,7 @@ import { Experience, Project, Skill, PersonalInfo, SocialLink } from "../types";
 export const personalInfo: PersonalInfo = {
   name: "Ahmed Raza Khan",
   title: "Software Engineer • AI/ML Specialist",
-  location: "Dundee, Scotland, UK",
+  location: "Scotland, UK",
   email: "khanahmed925@gmail.com",
   linkedin: "linkedin.com/in/ahmedrza",
   github: "github.com/ahmedrzakhan",
@@ -11,6 +11,7 @@ export const personalInfo: PersonalInfo = {
   leetcode: "leetcode.com/u/ahmedrza/",
   portfolio: "ahmdrz.com",
   website: "ahmdrz.com",
+  avatar: "/profile.jpeg",
 };
 
 export const professionalSummary =
