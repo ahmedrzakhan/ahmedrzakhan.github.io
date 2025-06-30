@@ -16,15 +16,21 @@ const Navbar: React.FC = () => {
   ];
 
   useEffect(() => {
+    let ticking = false;
+    
     const handleScroll = () => {
-      const scrollY = window.scrollY;
-      setIsScrolled(scrollY > 50);
-
-      // Show profile pic when hero image is out of view (around 300px scroll)
-      setShowProfilePic(scrollY > 200);
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const scrollY = window.scrollY;
+          setIsScrolled(scrollY > 50);
+          setShowProfilePic(scrollY > 200);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -37,7 +43,7 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'glass py-4' : 'py-6'
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'backdrop-blur-md bg-slate-900/80 border-b border-slate-700/50 py-4' : 'bg-transparent py-6'
       }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
@@ -45,15 +51,16 @@ const Navbar: React.FC = () => {
             {/* Animated Profile Picture */}
             {personalInfo.avatar && (
               <div
-                className={`transition-all duration-500 ease-in-out ${showProfilePic
-                  ? 'opacity-100 scale-100 translate-x-0'
-                  : 'opacity-0 scale-0 -translate-x-4'
+                className={`transition-all duration-300 ease-out overflow-hidden ${
+                  showProfilePic
+                    ? 'opacity-100 w-8 mr-0'
+                    : 'opacity-0 w-0 mr-0'
                   }`}
               >
                 <img
                   src={personalInfo.avatar}
                   alt={personalInfo.name}
-                  className="w-8 h-8 rounded-full object-cover border-2 border-primary/50 hover:border-primary transition-all duration-300"
+                  className="w-8 h-8 rounded-full object-cover border-2 border-primary/50 hover:border-primary transition-all duration-200 flex-shrink-0"
                 />
               </div>
             )}
