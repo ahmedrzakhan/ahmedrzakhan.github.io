@@ -29,7 +29,7 @@ export const experiences: Experience[] = [
     title: "Software Engineer",
     company: "Islamic Finance Singapore (IFSG Ltd.)",
     duration: "May 2025 - Present",
-    location: "Remote",
+    location: "Singapore",
     description: [
       "Platform Leadership: Spearheaded full-stack development of a Zakat platform, delivering scalable solutions for accurate Zakat calculations and contribution tracking",
       "Authentication and UI: Designed secure authentication with multiple providers and built responsive user interface with comprehensive testing framework",
@@ -39,7 +39,7 @@ export const experiences: Experience[] = [
     title: "Backend Engineer",
     company: "Peekabox",
     duration: "Oct 2024 - Feb 2025",
-    location: "Dubai, UAE, Remote",
+    location: "Dubai, UAE",
     description: [
       "Backend Architecture Leadership: Architected and implemented comprehensive authentication system and core services, enabling seamless connection between local businesses and consumers",
       "API Development & Integration: Designed robust enterprise-grade APIs supporting user engagement features and internal admin systems",
