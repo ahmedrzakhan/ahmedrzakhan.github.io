@@ -27,7 +27,7 @@ export const animatedRoles = [
 export const experiences: Experience[] = [
   {
     title: "Software Engineer",
-    company: "Islamic Finance Singapore (IFSG Ltd.)",
+    company: "Islamic Finance Singapore",
     duration: "May 2025 - Present",
     location: "Singapore",
     description: [
