@@ -126,6 +126,13 @@ export const projects: Project[] = [
     description:
       "Multi-AI Architecture with intelligent fallback. RAG implementation for accurate customer support responses.",
   },
+  {
+    title: "AI Writing Prompt Generator",
+    repo: "github.com/ahmedrzakhan/ai-writing-prompt-generator",
+    tech: "HuggingFace, FastAPI, Streamlit",
+    description:
+      "Creative Writing Assistant with customizable prompts across genres. Features prompt library, search/filter, and export functionality with fallback mechanisms.",
+  },
 ];
 
 export const skills: Skill[] = [
