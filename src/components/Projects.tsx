@@ -72,16 +72,23 @@ const Projects: React.FC<ProjectsProps> = ({ analytics }) => {
   };
 
   const getProjectIcon = (title: string) => {
-    if (title.toLowerCase().includes('ai') || title.toLowerCase().includes('recommender')) {
-      return 'fas fa-robot';
-    } else if (title.toLowerCase().includes('summary') || title.toLowerCase().includes('article')) {
-      return 'fas fa-file-alt';
-    } else if (title.toLowerCase().includes('documentation') || title.toLowerCase().includes('raft')) {
-      return 'fas fa-book';
-    } else if (title.toLowerCase().includes('bot') || title.toLowerCase().includes('faq')) {
-      return 'fas fa-comments';
+    const lowerTitle = title.toLowerCase();
+    
+    // More specific matching for better differentiation
+    if (lowerTitle.includes('recommender') || lowerTitle.includes('content')) {
+      return 'fas fa-search-plus'; // Search/discovery icon for content recommender
+    } else if (lowerTitle.includes('summary') || lowerTitle.includes('article')) {
+      return 'fas fa-file-alt'; // Document icon for article summarizer
+    } else if (lowerTitle.includes('documentation') || lowerTitle.includes('raft')) {
+      return 'fas fa-book'; // Book icon for documentation generator
+    } else if (lowerTitle.includes('bot') || lowerTitle.includes('faq')) {
+      return 'fas fa-comments'; // Chat icon for FAQ bot
+    } else if (lowerTitle.includes('writing') || lowerTitle.includes('prompt')) {
+      return 'fas fa-pen-fancy'; // Writing icon for prompt generator
+    } else if (lowerTitle.includes('ai') && !lowerTitle.includes('writing')) {
+      return 'fas fa-brain'; // Brain icon for general AI projects
     }
-    return 'fas fa-code';
+    return 'fas fa-code'; // Default code icon
   };
 
   return (
