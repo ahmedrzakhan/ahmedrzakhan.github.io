@@ -28,7 +28,7 @@ export const experiences: Experience[] = [
   {
     title: "Software Engineer",
     company: "Islamic Finance Singapore",
-    duration: "May 2025 - Present",
+    duration: "May 2025 - Jul 2025",
     location: "Singapore",
     description: [
       "Platform Leadership: Spearheaded full-stack development of a Zakat platform, delivering scalable solutions for accurate Zakat calculations and contribution tracking",
