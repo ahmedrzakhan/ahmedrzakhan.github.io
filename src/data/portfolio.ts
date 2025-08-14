@@ -15,7 +15,7 @@ export const personalInfo: PersonalInfo = {
 };
 
 export const professionalSummary =
-  "Results-driven Software Engineer with 4.5 years of experience in developing scalable applications and microservices architectures. Specialized expertise in AI/ML technologies including LLMs, RAG systems, and semantic search. Demonstrated leadership in technical initiatives that drove significant business impact, including systems that processed millions of transactions and improved operational efficiency.";
+  "Results-driven Software Engineer with 5 years of experience in developing scalable applications and microservices architectures. Specialized expertise in AI/ML technologies including LLMs, RAG systems, and semantic search. Demonstrated leadership in technical initiatives that drove significant business impact, including systems that processed millions of transactions and improved operational efficiency.";
 
 export const animatedRoles = [
   "Backend Engineer",
