@@ -9,7 +9,7 @@ const techColors: { [key: string]: { bg: string; text: string; icon?: string } }
   'JavaScript/TypeScript': { bg: 'bg-[#F7DF1E]', text: 'text-black', icon: 'fab fa-js' },
   'TypeScript': { bg: 'bg-[#007ACC]', text: 'text-white', icon: 'fab fa-js' },
   'JavaScript': { bg: 'bg-[#F7DF1E]', text: 'text-black', icon: 'fab fa-js' },
-  
+
   // AI/ML
   'OpenAI': { bg: 'bg-[#412991]', text: 'text-white' },
   'Google Gemini': { bg: 'bg-[#4285F4]', text: 'text-white' },
@@ -19,14 +19,14 @@ const techColors: { [key: string]: { bg: string; text: string; icon?: string } }
   'Transformers': { bg: 'bg-[#FF6F00]', text: 'text-white' },
   'RAFT': { bg: 'bg-[#8B5CF6]', text: 'text-white' },
   'Vector Embeddings': { bg: 'bg-[#10B981]', text: 'text-white' },
-  
+
   // Backend
   'FastAPI': { bg: 'bg-[#009688]', text: 'text-white', icon: 'fas fa-rocket' },
   'Node.js': { bg: 'bg-[#339933]', text: 'text-white', icon: 'fab fa-node-js' },
   'Express.js': { bg: 'bg-[#000000]', text: 'text-white', icon: 'fas fa-server' },
   'NestJS': { bg: 'bg-[#E0234E]', text: 'text-white', icon: 'fas fa-cube' },
   'Go Fiber': { bg: 'bg-[#00ADD8]', text: 'text-white', icon: 'fas fa-bolt' },
-  
+
   // Frontend
   'React.js': { bg: 'bg-[#61DAFB]', text: 'text-black', icon: 'fab fa-react' },
   'React': { bg: 'bg-[#61DAFB]', text: 'text-black', icon: 'fab fa-react' },
@@ -37,20 +37,20 @@ const techColors: { [key: string]: { bg: string; text: string; icon?: string } }
   'React Native': { bg: 'bg-[#61DAFB]', text: 'text-black', icon: 'fab fa-react' },
   'HTML5': { bg: 'bg-[#E34F26]', text: 'text-white', icon: 'fab fa-html5' },
   'CSS3': { bg: 'bg-[#1572B6]', text: 'text-white', icon: 'fab fa-css3-alt' },
-  
+
   // Databases
   'PostgreSQL': { bg: 'bg-[#336791]', text: 'text-white', icon: 'fas fa-database' },
   'MongoDB': { bg: 'bg-[#47A248]', text: 'text-white', icon: 'fas fa-leaf' },
   'Redis': { bg: 'bg-[#DC382D]', text: 'text-white', icon: 'fas fa-memory' },
   'Elasticsearch': { bg: 'bg-[#005571]', text: 'text-white', icon: 'fas fa-search' },
-  
+
   // Cloud & DevOps
   'AWS': { bg: 'bg-[#FF9900]', text: 'text-black', icon: 'fab fa-aws' },
   'Docker': { bg: 'bg-[#2496ED]', text: 'text-white', icon: 'fab fa-docker' },
   'Google Cloud': { bg: 'bg-[#4285F4]', text: 'text-white', icon: 'fab fa-google' },
   'Jenkins': { bg: 'bg-[#D24939]', text: 'text-white', icon: 'fas fa-hammer' },
   'Nginx': { bg: 'bg-[#009639]', text: 'text-white', icon: 'fas fa-shield-alt' },
-  
+
   // Tools
   'Apache Kafka': { bg: 'bg-[#231F20]', text: 'text-white', icon: 'fas fa-stream' },
   'Git': { bg: 'bg-[#F05032]', text: 'text-white', icon: 'fab fa-git-alt' },
@@ -159,7 +159,7 @@ const Skills: React.FC = () => {
             <div className="text-gray-400">Categories</div>
           </div>
           <div className="glass p-6 rounded-2xl text-center">
-            <div className="text-3xl font-bold text-primary mb-2">4.5+</div>
+            <div className="text-3xl font-bold text-primary mb-2">5</div>
             <div className="text-gray-400">Years Experience</div>
           </div>
           <div className="glass p-6 rounded-2xl text-center">

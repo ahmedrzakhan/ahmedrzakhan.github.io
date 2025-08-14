@@ -3,7 +3,7 @@ import { professionalSummary, personalInfo, education } from '../data/portfolio'
 
 const About: React.FC = () => {
   const stats = [
-    { number: '4.5+', label: 'Years Experience' },
+    { number: '5+', label: 'Years Experience' },
     { number: '2M+', label: 'Monthly Revenue Impact' },
     { number: '400K+', label: 'Users Served' },
     { number: '265+', label: 'Partner Integrations' },
@@ -33,7 +33,7 @@ const About: React.FC = () => {
             <div className="glass p-8 rounded-2xl">
               <h3 className="text-2xl font-semibold mb-4 text-primary">Currently Working On</h3>
               <p className="text-gray-300 leading-relaxed">
-                Building AI-powered content recommendation systems with advanced semantic search capabilities, 
+                Building AI-powered content recommendation systems with advanced semantic search capabilities,
                 focusing on improving user experience through intelligent content discovery and personalization.
               </p>
             </div>
