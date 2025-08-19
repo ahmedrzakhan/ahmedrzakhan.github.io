@@ -26,6 +26,15 @@ export const animatedRoles = [
 
 export const experiences: Experience[] = [
   {
+    title: "Software Engineering Mentor",
+    company: "Masai",
+    duration: "Apr 2025 - Present",
+    location: "Bengaluru, India",
+    description: [
+      "Technical Mentorship: Guiding junior developers and students in software engineering best practices, code review processes, and career development, helping accelerate their technical growth and professional skills",
+    ],
+  },
+  {
     title: "Software Engineer",
     company: "Islamic Finance Singapore",
     duration: "May 2025 - Jul 2025",
