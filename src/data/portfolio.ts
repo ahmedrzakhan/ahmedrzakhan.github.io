@@ -36,6 +36,15 @@ export const experiences: Experience[] = [
     ],
   },
   {
+    title: "Generative AI Engineer",
+    company: "Reality AI Lab",
+    duration: "Mar 2025 - Jul 2025",
+    location: "San Francisco, US",
+    description: [
+      "AI Technology Integration: Developed understanding of AI system architecture through documentation review and team collaboration",
+    ],
+  },
+  {
     title: "Backend Engineer",
     company: "Peekabox",
     duration: "Oct 2024 - Feb 2025",
