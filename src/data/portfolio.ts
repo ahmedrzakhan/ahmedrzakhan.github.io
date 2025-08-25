@@ -106,7 +106,7 @@ export const experiences: Experience[] = [
   {
     title: "Software Engineer",
     company: "Right Brain Infotech",
-    duration: "Aug 2019 - Mar 2020",
+    duration: "May 2019 - May 2020",
     location: "Pune, India",
     description: [
       "Employment Self Service: Designed a custom Employee self service mobile app tailored for Tata Motors, simplifying HR processes for 50K employees",
