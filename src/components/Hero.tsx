@@ -66,7 +66,7 @@ const Hero: React.FC = () => {
           </div>
 
           <p className="text-xl md:text-2xl text-gray-400 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Specializing in Backend Development and AI/ML technologies with 5 years of experience building scalable applications.
+            Specializing in Backend Development and AI/ML technologies with 5+ years of experience building scalable applications.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-12">
