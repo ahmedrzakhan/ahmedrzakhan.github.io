@@ -22,24 +22,35 @@ const Experience: React.FC = () => {
             {experiences.map((experience, index) => (
               <div
                 key={index}
-                className={`relative flex items-center ${
-                  index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                } flex-col md:flex-row`}
+                className={`relative flex items-center ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+                  } flex-col md:flex-row`}
               >
                 {/* Timeline dot */}
                 <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-primary rounded-full border-4 border-slate-900 z-10"></div>
 
                 {/* Content */}
                 <div
-                  className={`w-full md:w-5/12 ml-12 md:ml-0 ${
-                    index % 2 === 0 ? 'md:pr-8' : 'md:pl-8'
-                  }`}
+                  className={`w-full md:w-5/12 ml-12 md:ml-0 ${index % 2 === 0 ? 'md:pr-8' : 'md:pl-8'
+                    }`}
                 >
                   <div className="glass p-6 rounded-2xl hover:shadow-lg hover:shadow-primary/10 transition-all duration-300 transform hover:-translate-y-1">
                     <div className="flex items-start justify-between mb-4">
                       <div>
                         <h3 className="text-xl font-bold text-white mb-1">
-                          {experience.title}
+                          {(() => {
+                            const contractMatch = experience.title.match(/^(.+?)\s*-\s*\(Contract\)$/);
+                            if (contractMatch) {
+                              return (
+                                <>
+                                  {contractMatch[1]}
+                                  <span className="text-sm font-normal text-gray-400 ml-2">
+                                    (Contract)
+                                  </span>
+                                </>
+                              );
+                            }
+                            return experience.title;
+                          })()}
                         </h3>
                         <h4 className="text-primary font-semibold text-lg mb-1">
                           {experience.company}

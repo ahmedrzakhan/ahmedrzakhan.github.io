@@ -35,7 +35,7 @@ export const experiences: Experience[] = [
     ],
   },
   {
-    title: "Software Engineer",
+    title: "Software Engineer - (Contract)",
     company: "Islamic Finance Singapore",
     duration: "May 2025 - Jul 2025",
     location: "Singapore",
@@ -45,7 +45,7 @@ export const experiences: Experience[] = [
     ],
   },
   {
-    title: "Generative AI Engineer",
+    title: "Generative AI Engineer - (Contract)",
     company: "Reality AI Lab",
     duration: "Mar 2025 - Jul 2025",
     location: "San Francisco, US",
@@ -54,7 +54,7 @@ export const experiences: Experience[] = [
     ],
   },
   {
-    title: "Backend Engineer",
+    title: "Backend Engineer - (Contract)",
     company: "Peekabox",
     duration: "Oct 2024 - Feb 2025",
     location: "Dubai, UAE",
