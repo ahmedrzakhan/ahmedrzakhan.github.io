@@ -6,6 +6,7 @@ const techColors: { [key: string]: { bg: string; text: string; icon?: string } }
   // Programming Languages
   'Python': { bg: 'bg-[#3776AB]', text: 'text-white', icon: 'fab fa-python' },
   'Go': { bg: 'bg-[#00ADD8]', text: 'text-white', icon: 'fab fa-golang' },
+  'Java': { bg: 'bg-[#ED8B00]', text: 'text-white', icon: 'fab fa-java' },
   'JavaScript/TypeScript': { bg: 'bg-[#F7DF1E]', text: 'text-black', icon: 'fab fa-js' },
   'TypeScript': { bg: 'bg-[#007ACC]', text: 'text-white', icon: 'fab fa-js' },
   'JavaScript': { bg: 'bg-[#F7DF1E]', text: 'text-black', icon: 'fab fa-js' },
@@ -26,6 +27,7 @@ const techColors: { [key: string]: { bg: string; text: string; icon?: string } }
   'Express.js': { bg: 'bg-[#000000]', text: 'text-white', icon: 'fas fa-server' },
   'NestJS': { bg: 'bg-[#E0234E]', text: 'text-white', icon: 'fas fa-cube' },
   'Go Fiber': { bg: 'bg-[#00ADD8]', text: 'text-white', icon: 'fas fa-bolt' },
+  'Spring Boot': { bg: 'bg-[#6DB33F]', text: 'text-white', icon: 'fas fa-leaf' },
 
   // Frontend
   'React.js': { bg: 'bg-[#61DAFB]', text: 'text-black', icon: 'fab fa-react' },

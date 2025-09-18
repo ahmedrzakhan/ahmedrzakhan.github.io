@@ -156,7 +156,7 @@ export const projects: Project[] = [
 export const skills: Skill[] = [
   {
     category: "Programming Languages",
-    technologies: ["Python", "Go", "JavaScript/TypeScript"],
+    technologies: ["Python", "Go", "Java", "JavaScript/TypeScript"],
   },
   {
     category: "AI/ML",
@@ -173,7 +173,7 @@ export const skills: Skill[] = [
   },
   {
     category: "Backend",
-    technologies: ["FastAPI", "Node.js", "Express.js", "NestJS", "Go Fiber"],
+    technologies: ["FastAPI", "Node.js", "Express.js", "NestJS", "Go Fiber", "Spring Boot"],
   },
   {
     category: "Frontend",
