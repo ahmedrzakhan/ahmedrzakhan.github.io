@@ -52,6 +52,7 @@ const techColors: { [key: string]: { bg: string; text: string; icon?: string } }
   'Google Cloud': { bg: 'bg-[#4285F4]', text: 'text-white', icon: 'fab fa-google' },
   'Jenkins': { bg: 'bg-[#D24939]', text: 'text-white', icon: 'fas fa-hammer' },
   'Nginx': { bg: 'bg-[#009639]', text: 'text-white', icon: 'fas fa-shield-alt' },
+  'Kubernetes': { bg: 'bg-[#326CE5]', text: 'text-white', icon: 'fas fa-dharmachakra' },
 
   // Tools
   'Apache Kafka': { bg: 'bg-[#231F20]', text: 'text-white', icon: 'fas fa-stream' },

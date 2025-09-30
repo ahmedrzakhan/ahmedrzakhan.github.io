@@ -202,7 +202,7 @@ export const skills: Skill[] = [
   },
   {
     category: "Cloud & DevOps",
-    technologies: ["AWS", "Docker", "Google Cloud", "Jenkins", "Nginx"],
+    technologies: ["AWS", "Docker", "Google Cloud", "Jenkins", "Nginx", "Kubernetes"],
   },
   {
     category: "Tools",
