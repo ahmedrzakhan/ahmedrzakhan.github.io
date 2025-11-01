@@ -37,17 +37,52 @@ const Navbar: React.FC = () => {
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const targetPosition = element.getBoundingClientRect().top + window.pageYOffset;
+      const startPosition = window.pageYOffset;
+      const distance = targetPosition - startPosition - 80;
+      const duration = 800; // Optimal duration for smooth feel
+      let start: number | null = null;
+
+      // Custom easing function - smooth and natural like iOS
+      const easeInOutQuart = (t: number): number => {
+        return t < 0.5
+          ? 8 * t * t * t * t
+          : 1 - Math.pow(-2 * t + 2, 4) / 2;
+      };
+
+      const animation = (currentTime: number) => {
+        if (start === null) start = currentTime;
+        const timeElapsed = currentTime - start;
+        const progress = Math.min(timeElapsed / duration, 1);
+        const ease = easeInOutQuart(progress);
+
+        window.scrollTo({
+          top: startPosition + distance * ease,
+          behavior: 'auto' // Use our custom animation instead of browser's
+        });
+
+        if (timeElapsed < duration) {
+          requestAnimationFrame(animation);
+        }
+      };
+
+      requestAnimationFrame(animation);
     }
     setIsMobileMenuOpen(false);
   };
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-      isScrolled
-        ? 'glass-strong py-4'
-        : 'bg-transparent py-6'
-      }`}>
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 w-full ${
+        isScrolled ? 'glass-strong py-4' : 'bg-transparent py-6'
+      }`}
+      style={{
+        position: 'fixed',
+        top: 0,
+        transition: 'all 0.6s cubic-bezier(0.19, 1, 0.22, 1)',
+        willChange: 'padding, backdrop-filter',
+      }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           <div className="flex-shrink-0 flex items-center space-x-3">

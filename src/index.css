@@ -10,6 +10,14 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+/* Ultra Smooth Scrolling with Momentum */
+@media screen and (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
@@ -26,6 +34,8 @@ body {
   color: #e8e8e8;
   line-height: 1.6;
   overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Animated gradient background */
@@ -82,7 +92,8 @@ body {
               inset 0 -2px 4px 0 rgba(0, 0, 0, 0.4);
   position: relative;
   overflow: hidden;
-  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 1.2s cubic-bezier(0.19, 1, 0.22, 1),
+              transform 1s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .glass::before {
@@ -98,7 +109,7 @@ body {
               rgba(255, 255, 255, 0.25) 50%,
               rgba(255, 255, 255, 0.15) 60%,
               transparent);
-  transition: left 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: left 1.6s cubic-bezier(0.19, 1, 0.22, 1);
   transform: skewX(-15deg);
 }
 
@@ -112,7 +123,7 @@ body {
               transparent 70%,
               rgba(0, 0, 0, 0.15) 100%);
   opacity: 1;
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 1.2s cubic-bezier(0.19, 1, 0.22, 1);
   pointer-events: none;
 }
 
@@ -121,16 +132,16 @@ body {
               rgba(35, 35, 35, 0.5) 0%,
               rgba(28, 28, 28, 0.4) 50%,
               rgba(32, 32, 32, 0.45) 100%);
-  border-color: rgba(255, 255, 255, 0.25);
-  border-top-color: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 16px 64px 0 rgba(0, 0, 0, 0.7),
-              0 4px 20px 0 rgba(0, 0, 0, 0.5),
-              0 0 120px 0 rgba(255, 255, 255, 0.05),
-              inset 0 3px 6px 0 rgba(255, 255, 255, 0.25),
+  border-color: rgba(255, 255, 255, 0.22);
+  border-top-color: rgba(255, 255, 255, 0.28);
+  box-shadow: 0 12px 48px 0 rgba(0, 0, 0, 0.65),
+              0 4px 16px 0 rgba(0, 0, 0, 0.45),
+              0 0 100px 0 rgba(255, 255, 255, 0.04),
+              inset 0 2px 5px 0 rgba(255, 255, 255, 0.22),
               inset 0 -2px 4px 0 rgba(0, 0, 0, 0.3);
-  transform: translateY(-4px) scale(1.005);
-  backdrop-filter: blur(100px) saturate(180%) brightness(1.2) contrast(1.15);
-  -webkit-backdrop-filter: blur(100px) saturate(180%) brightness(1.2) contrast(1.15);
+  transform: translateY(-2px) scale(1.003);
+  backdrop-filter: blur(95px) saturate(165%) brightness(1.18) contrast(1.12);
+  -webkit-backdrop-filter: blur(95px) saturate(165%) brightness(1.18) contrast(1.12);
 }
 
 .glass:hover::before {
@@ -138,7 +149,7 @@ body {
 }
 
 .glass:hover::after {
-  opacity: 0.7;
+  opacity: 0.75;
 }
 
 /* Enhanced Liquid Glass - Premium Strong Variant */
@@ -157,7 +168,8 @@ body {
               0 0 100px 0 rgba(255, 255, 255, 0.04),
               inset 0 3px 6px 0 rgba(255, 255, 255, 0.25),
               inset 0 -3px 6px 0 rgba(0, 0, 0, 0.5);
-  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 1.4s cubic-bezier(0.19, 1, 0.22, 1),
+              transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
   position: relative;
   overflow: hidden;
 }
@@ -172,19 +184,19 @@ body {
               transparent 75%,
               rgba(0, 0, 0, 0.2) 100%);
   pointer-events: none;
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 1.2s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .glass-strong:hover {
-  backdrop-filter: blur(120px) saturate(180%) brightness(1.25) contrast(1.15);
-  -webkit-backdrop-filter: blur(120px) saturate(180%) brightness(1.25) contrast(1.15);
-  border-color: rgba(255, 255, 255, 0.3);
-  border-top-color: rgba(255, 255, 255, 0.35);
-  box-shadow: 0 32px 100px 0 rgba(0, 0, 0, 0.8),
-              0 16px 48px 0 rgba(0, 0, 0, 0.6),
-              0 0 150px 0 rgba(255, 255, 255, 0.06),
-              inset 0 4px 8px 0 rgba(255, 255, 255, 0.3);
-  transform: translateY(-6px) scale(1.01);
+  backdrop-filter: blur(115px) saturate(170%) brightness(1.23) contrast(1.13);
+  -webkit-backdrop-filter: blur(115px) saturate(170%) brightness(1.23) contrast(1.13);
+  border-color: rgba(255, 255, 255, 0.26);
+  border-top-color: rgba(255, 255, 255, 0.32);
+  box-shadow: 0 28px 90px 0 rgba(0, 0, 0, 0.75),
+              0 14px 40px 0 rgba(0, 0, 0, 0.55),
+              0 0 130px 0 rgba(255, 255, 255, 0.05),
+              inset 0 3px 7px 0 rgba(255, 255, 255, 0.28);
+  transform: translateY(-4px) scale(1.006);
 }
 
 .glass-light {
@@ -302,14 +314,16 @@ body {
   }
 }
 
-/* Liquid Glass Card - Ultra Smooth & Fluid Animations */
+/* Liquid Glass Card - Buttery Smooth Animations */
 .glass-card {
-  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 1.4s cubic-bezier(0.19, 1, 0.22, 1),
+              transform 1.2s cubic-bezier(0.19, 1, 0.22, 1),
+              box-shadow 1.4s cubic-bezier(0.19, 1, 0.22, 1),
+              backdrop-filter 1.4s cubic-bezier(0.19, 1, 0.22, 1);
   transform-style: preserve-3d;
-  perspective: 1500px;
-  will-change: transform, backdrop-filter;
-  animation: cardFloat 6s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  perspective: 2000px;
+  will-change: transform;
+  animation: cardFloat 8s cubic-bezier(0.37, 0, 0.63, 1) infinite;
 }
 
 @keyframes cardFloat {
@@ -317,21 +331,21 @@ body {
     transform: translateY(0px);
   }
   50% {
-    transform: translateY(-5px);
+    transform: translateY(-3px);
   }
 }
 
 .glass-card:hover {
-  transform: translateY(-12px) scale(1.015) rotateX(3deg);
-  box-shadow: 0 32px 120px 0 rgba(0, 0, 0, 0.8),
-              0 16px 60px 0 rgba(0, 0, 0, 0.6),
-              0 0 150px 0 rgba(255, 255, 255, 0.05),
-              inset 0 4px 8px 0 rgba(255, 255, 255, 0.25),
-              inset 0 -2px 4px 0 rgba(0, 0, 0, 0.4);
-  border-color: rgba(255, 255, 255, 0.3);
-  border-top-color: rgba(255, 255, 255, 0.35);
-  backdrop-filter: blur(120px) saturate(180%) brightness(1.25) contrast(1.12);
-  -webkit-backdrop-filter: blur(120px) saturate(180%) brightness(1.25) contrast(1.12);
+  transform: translateY(-8px) scale(1.008) rotateX(1deg);
+  box-shadow: 0 28px 100px 0 rgba(0, 0, 0, 0.75),
+              0 12px 48px 0 rgba(0, 0, 0, 0.55),
+              0 0 120px 0 rgba(255, 255, 255, 0.04),
+              inset 0 3px 6px 0 rgba(255, 255, 255, 0.22),
+              inset 0 -2px 4px 0 rgba(0, 0, 0, 0.35);
+  border-color: rgba(255, 255, 255, 0.25);
+  border-top-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(110px) saturate(170%) brightness(1.22) contrast(1.1);
+  -webkit-backdrop-filter: blur(110px) saturate(170%) brightness(1.22) contrast(1.1);
   animation-play-state: paused;
 }
 
