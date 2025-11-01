@@ -43,7 +43,7 @@ const Experience: React.FC = () => {
                   <div className="glass-card glass-strong p-8 rounded-3xl shadow-glass-lg hover:shadow-glass-xl transition-all duration-500 transform hover:-translate-y-2">
                     <div className="flex items-start justify-between mb-6">
                       <div className="flex-1">
-                        <h3 className="text-xl font-bold text-white mb-2">
+                        <h3 className="text-2xl font-bold text-white mb-3">
                           {(() => {
                             const contractMatch = experience.title.match(/^(.+?)\s*-\s*\(Contract\)$/);
                             if (contractMatch) {
@@ -59,16 +59,16 @@ const Experience: React.FC = () => {
                             return experience.title;
                           })()}
                         </h3>
-                        <h4 className="gradient-text font-bold text-lg mb-2">
+                        <h4 className="gradient-text font-bold text-xl mb-2">
                           {experience.company}
                         </h4>
                         {experience.type && (
-                          <p className="text-sm text-gray-300 mb-2">
+                          <p className="text-base text-gray-300 mb-2">
                             {experience.type}
                           </p>
                         )}
                       </div>
-                      <div className="text-right text-sm ml-4">
+                      <div className="text-right text-base ml-4">
                         <p className="gradient-text font-semibold mb-1">{experience.duration}</p>
                         <p className="text-gray-400">{experience.location}</p>
                       </div>
@@ -78,7 +78,7 @@ const Experience: React.FC = () => {
                       {experience.description.map((desc, descIndex) => (
                         <li key={descIndex} className="flex items-start text-gray-300 group">
                           <div className="w-2 h-2 rounded-full bg-gradient-liquid mt-2 mr-3 flex-shrink-0 group-hover:scale-150 transition-transform shadow-glow-primary"></div>
-                          <span className="text-sm leading-relaxed">{desc}</span>
+                          <span className="text-base leading-relaxed">{desc}</span>
                         </li>
                       ))}
                     </ul>
