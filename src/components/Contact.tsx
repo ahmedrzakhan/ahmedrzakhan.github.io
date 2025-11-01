@@ -52,11 +52,12 @@ const Contact: React.FC<ContactProps> = ({ analytics }) => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-slate-800/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+    <section id="contact" className="py-20 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-900/50 via-slate-800/30 to-slate-900/50"></div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Get In <span className="gradient-text">Touch</span>
+            Get In <span className="gradient-text-ts">Touch</span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             Let's discuss opportunities, collaborations, or just connect! I'm always open to interesting conversations and new projects.
@@ -83,20 +84,18 @@ const Contact: React.FC<ContactProps> = ({ analytics }) => {
                     href={method.link}
                     target={method.link.startsWith('http') ? '_blank' : '_self'}
                     rel={method.link.startsWith('http') ? 'noopener noreferrer' : ''}
-                    className={`glass p-6 rounded-2xl hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 group ${
+                    className={`glass-card glass-strong p-6 rounded-3xl shadow-glass-lg hover:shadow-glass-xl glow-on-hover transition-all duration-500 transform hover:-translate-y-2 group ${
                       method.link === '#' ? 'cursor-default' : 'cursor-pointer'
-                    }`}
+                    } animate-fade-in-up`}
                     style={{
-                      ['--shadow-color' as any]: method.title === 'LinkedIn' ? '#0077b5' : 
-                                                 method.title === 'GitHub' ? '#24292e' : 
-                                                 method.title === 'Email' ? '#ea4335' : '#3b82f6'
+                      animationDelay: `${index * 100}ms`
                     }}
                   >
                     <div className="text-center">
-                      <div className={`w-16 h-16 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg transition-all duration-300 ${colors.bg} ${colors.hover}`}>
-                        <i className={`${method.icon} text-2xl ${colors.icon}`}></i>
+                      <div className="w-16 h-16 rounded-2xl bg-gradient-liquid flex items-center justify-center mx-auto mb-4 shadow-glass-lg transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
+                        <i className={`${method.icon} text-2xl text-white`}></i>
                       </div>
-                      <h4 className="font-semibold text-white group-hover:text-primary transition-colors duration-300 mb-2">
+                      <h4 className="font-semibold text-white group-hover:text-transparent group-hover:bg-gradient-liquid group-hover:bg-clip-text transition-all duration-300 mb-2">
                         {method.title}
                       </h4>
                       <p className="text-sm text-gray-400 mb-2">{method.description}</p>
@@ -108,10 +107,10 @@ const Contact: React.FC<ContactProps> = ({ analytics }) => {
             </div>
 
             {/* Social Links */}
-            <div className="glass p-8 rounded-2xl text-center">
-              <h4 className="text-2xl font-bold mb-8">Follow Me</h4>
-              <div className="flex items-center justify-center space-x-8">
-                {socialLinks.map((link) => {
+            <div className="glass-card glass-strong p-8 rounded-3xl shadow-glass-lg hover:shadow-glass-xl text-center animate-fade-in-up transition-all duration-500">
+              <h4 className="text-2xl font-bold mb-8 gradient-text-ts">Follow Me</h4>
+              <div className="flex items-center justify-center space-x-8 flex-wrap gap-4">
+                {socialLinks.map((link, index) => {
                   const colors = getBrandColors(link.name);
                   return (
                     <a
@@ -119,11 +118,14 @@ const Contact: React.FC<ContactProps> = ({ analytics }) => {
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex flex-col items-center group"
+                      className="flex flex-col items-center group animate-fade-in-up"
                       aria-label={link.name}
+                      style={{
+                        animationDelay: `${index * 100 + 400}ms`
+                      }}
                     >
-                      <div className={`w-16 h-16 rounded-xl flex items-center justify-center transition-all duration-300 transform hover:scale-110 mb-2 shadow-lg ${colors.bg} ${colors.hover}`}>
-                        <i className={`${link.icon} text-2xl ${colors.icon}`}></i>
+                      <div className="w-16 h-16 rounded-2xl bg-gradient-liquid flex items-center justify-center transition-all duration-500 transform hover:scale-125 hover:rotate-12 mb-2 shadow-glass-lg hover:shadow-glass-xl glow-on-hover">
+                        <i className={`${link.icon} text-2xl text-white`}></i>
                       </div>
                       <span className="text-sm text-gray-400 group-hover:text-white transition-colors duration-300">
                         {link.name}
@@ -135,8 +137,8 @@ const Contact: React.FC<ContactProps> = ({ analytics }) => {
             </div>
 
             {/* Call to Action */}
-            <div className="glass p-8 rounded-2xl text-center">
-              <h4 className="text-2xl font-bold mb-4">Ready to Work Together?</h4>
+            <div className="glass-card glass-strong p-8 rounded-3xl shadow-glass-lg hover:shadow-glass-xl text-center animate-fade-in-up transition-all duration-500">
+              <h4 className="text-2xl font-bold mb-4 gradient-text-ts">Ready to Work Together?</h4>
               <p className="text-gray-300 mb-6">
                 Let's build something amazing together. Reach out and let's discuss your next project!
               </p>
@@ -144,14 +146,14 @@ const Contact: React.FC<ContactProps> = ({ analytics }) => {
                 <a
                   href={`mailto:${personalInfo.email}`}
                   onClick={handleEmailClick}
-                  className="inline-flex items-center bg-gradient-to-r from-primary to-accent text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-primary/25"
+                  className="liquid-button inline-flex items-center bg-gradient-liquid text-white px-8 py-4 rounded-2xl font-semibold transition-all duration-500 transform hover:scale-105 hover:shadow-glass-xl glow-on-hover"
                 >
                   <i className="fas fa-envelope mr-3"></i>
                   Get In Touch
                 </a>
                 <button
                   onClick={handleResumeDownload}
-                  className="inline-flex items-center bg-gradient-to-r from-gray-600 to-gray-700 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-gray-500/25"
+                  className="liquid-button inline-flex items-center bg-gradient-liquid text-white px-8 py-4 rounded-2xl font-semibold transition-all duration-500 transform hover:scale-105 hover:shadow-glass-xl glow-on-hover"
                 >
                   <i className="fas fa-download mr-3"></i>
                   Download Resume

@@ -14,67 +14,214 @@ html {
 
 body {
   font-family: "Inter", sans-serif;
-  background-color: #0f172a;
+  background: #0A0E27;
+  background-image: radial-gradient(at 0% 0%, rgba(0, 217, 255, 0.15) 0px, transparent 50%),
+                    radial-gradient(at 100% 0%, rgba(162, 89, 255, 0.15) 0px, transparent 50%),
+                    radial-gradient(at 100% 100%, rgba(255, 107, 157, 0.15) 0px, transparent 50%),
+                    radial-gradient(at 0% 100%, rgba(0, 217, 255, 0.15) 0px, transparent 50%);
+  background-attachment: fixed;
   color: #f1f5f9;
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
-/* Custom scrollbar */
+/* Animated gradient background */
+@keyframes gradientRotate {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Custom scrollbar with liquid glass theme */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #1e293b;
+  background: rgba(26, 27, 61, 0.5);
+  backdrop-filter: blur(10px);
+  border-left: 1px solid rgba(0, 217, 255, 0.1);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #2e9ef7;
-  border-radius: 4px;
+  background: linear-gradient(180deg, #00D9FF 0%, #A259FF 50%, #FF6B9D 100%);
+  border-radius: 10px;
+  border: 2px solid rgba(26, 27, 61, 0.5);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #1d4ed8;
+  background: linear-gradient(180deg, #5FFFFF 0%, #C494FF 50%, #FFB3CC 100%);
+  box-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
 }
 
-/* Glassmorphism effect */
+/* Liquid Glass Effect - Base */
 .glass {
-  background: rgba(30, 41, 59, 0.7);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(59, 130, 246, 0.1);
+  background: rgba(26, 27, 61, 0.4);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 217, 255, 0.15),
+              inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
 }
 
-/* Gradient text */
+.glass::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.glass:hover::before {
+  left: 100%;
+}
+
+/* Enhanced Glass Effects */
+.glass-strong {
+  background: rgba(26, 27, 61, 0.6);
+  backdrop-filter: blur(30px) saturate(200%);
+  -webkit-backdrop-filter: blur(30px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 12px 48px 0 rgba(0, 217, 255, 0.2),
+              0 0 24px 0 rgba(162, 89, 255, 0.15),
+              inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
+}
+
+.glass-light {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px) saturate(150%);
+  -webkit-backdrop-filter: blur(15px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 24px 0 rgba(0, 217, 255, 0.1),
+              inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+}
+
+/* Liquid Gradient Text */
 .gradient-text {
-  background: linear-gradient(135deg, #2e9ef7 0%, #3b82f6 100%);
+  background: linear-gradient(135deg, #00D9FF 0%, #A259FF 50%, #FF6B9D 100%);
+  background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: gradientRotate 8s ease infinite;
 }
 
-/* Gradient text */
 .gradient-text-ts {
-  background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 50%, #1d4ed8 100%);
+  background: linear-gradient(135deg, #00D9FF 0%, #A259FF 30%, #FF6B9D 60%, #00D9FF 100%);
+  background-size: 300% 300%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
-  filter: drop-shadow(0 0 10px rgba(96, 165, 250, 0.4));
+  filter: drop-shadow(0 0 20px rgba(0, 217, 255, 0.5))
+          drop-shadow(0 0 40px rgba(162, 89, 255, 0.3));
+  animation: gradientRotate 10s ease infinite;
 }
 
-/* Particle animation */
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px);
+/* Holographic border effect */
+.holographic-border {
+  position: relative;
+  border: 1px solid transparent;
+  background: linear-gradient(#0A0E27, #0A0E27) padding-box,
+              linear-gradient(135deg, #00D9FF, #A259FF, #FF6B9D, #00D9FF) border-box;
+  background-size: 300% 300%;
+  animation: gradientRotate 6s linear infinite;
+}
+
+/* Liquid morphing shapes */
+.liquid-shape {
+  position: absolute;
+  filter: blur(80px);
+  opacity: 0.3;
+  animation: liquid-flow 20s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.liquid-shape-1 {
+  background: linear-gradient(135deg, #00D9FF, #A259FF);
+  animation-delay: 0s;
+}
+
+.liquid-shape-2 {
+  background: linear-gradient(135deg, #A259FF, #FF6B9D);
+  animation-delay: -7s;
+}
+
+.liquid-shape-3 {
+  background: linear-gradient(135deg, #FF6B9D, #00D9FF);
+  animation-delay: -14s;
+}
+
+@keyframes liquid-flow {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  25% {
+    transform: translate(30%, 20%) rotate(90deg) scale(1.1);
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
   }
   50% {
-    transform: translateY(-20px);
+    transform: translate(0, 40%) rotate(180deg) scale(0.9);
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  75% {
+    transform: translate(-30%, 20%) rotate(270deg) scale(1.05);
+    border-radius: 40% 60% 60% 40% / 60% 40% 60% 40%;
   }
 }
 
+/* Glass card hover effect */
+.glass-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.glass-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 60px 0 rgba(0, 217, 255, 0.25),
+              0 0 40px 0 rgba(162, 89, 255, 0.2),
+              0 0 20px 0 rgba(255, 107, 157, 0.15);
+  border-color: rgba(0, 217, 255, 0.3);
+}
+
+/* Glow effects */
+.glow-on-hover {
+  transition: all 0.3s ease;
+}
+
+.glow-on-hover:hover {
+  box-shadow: 0 0 20px rgba(0, 217, 255, 0.6),
+              0 0 40px rgba(162, 89, 255, 0.4),
+              0 0 60px rgba(255, 107, 157, 0.3);
+}
+
+/* Floating animation */
 .floating {
   animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-20px) rotate(1deg);
+  }
+  66% {
+    transform: translateY(-10px) rotate(-1deg);
+  }
 }
 
 /* Typing cursor */
@@ -84,12 +231,96 @@ body {
 }
 
 @keyframes blink {
-  0%,
-  50% {
+  0%, 50% {
     opacity: 1;
   }
-  51%,
-  100% {
+  51%, 100% {
     opacity: 0;
   }
+}
+
+/* Shimmer effect for loading states */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Frosted glass overlay */
+.frosted-glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(40px) saturate(200%);
+  -webkit-backdrop-filter: blur(40px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37),
+              inset 0 0 20px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Liquid button effect */
+.liquid-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.liquid-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.liquid-button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Ripple effect */
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(0, 217, 255, 0.6);
+  animation: ripple 0.6s ease-out;
+}
+
+/* Selection color */
+::selection {
+  background: rgba(0, 217, 255, 0.3);
+  color: #ffffff;
+}
+
+::-moz-selection {
+  background: rgba(0, 217, 255, 0.3);
+  color: #ffffff;
 }
