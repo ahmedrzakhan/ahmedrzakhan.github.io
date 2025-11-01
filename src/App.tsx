@@ -57,7 +57,7 @@ function App() {
 
   const handleAnalyticsAccept = () => {
     // Analytics will be enabled automatically via the cookie consent
-    window.location.reload(); // Reload to initialize analytics
+    // No reload needed - the useAnalytics hook will re-initialize when consent changes
   };
 
   const handleAnalyticsDecline = () => {
