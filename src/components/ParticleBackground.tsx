@@ -50,25 +50,25 @@ const ParticleBackground: React.FC = () => {
     };
 
     const getParticleColor = (hue: number, opacity: number): string => {
-      // Liquid glass gradient colors
+      // Softer liquid glass gradient colors
       if (hue < 1) {
-        // Cyan to Purple
+        // Sky blue to Lavender
         const mix = hue;
-        return `rgba(${Math.floor(0 + (162 - 0) * mix)}, ${Math.floor(217 + (89 - 217) * mix)}, ${Math.floor(255 + (255 - 255) * mix)}, ${opacity})`;
+        return `rgba(${Math.floor(109 + (180 - 109) * mix)}, ${Math.floor(213 + (144 - 213) * mix)}, ${Math.floor(237 + (202 - 237) * mix)}, ${opacity})`;
       } else if (hue < 2) {
-        // Purple to Pink
+        // Lavender to Rose
         const mix = hue - 1;
-        return `rgba(${Math.floor(162 + (255 - 162) * mix)}, ${Math.floor(89 + (107 - 89) * mix)}, ${Math.floor(255 + (157 - 255) * mix)}, ${opacity})`;
+        return `rgba(${Math.floor(180 + (244 - 180) * mix)}, ${Math.floor(144 + (165 - 144) * mix)}, ${Math.floor(202 + (174 - 202) * mix)}, ${opacity})`;
       } else {
-        // Pink to Cyan
+        // Rose to Sky blue
         const mix = hue - 2;
-        return `rgba(${Math.floor(255 + (0 - 255) * mix)}, ${Math.floor(107 + (217 - 107) * mix)}, ${Math.floor(157 + (255 - 157) * mix)}, ${opacity})`;
+        return `rgba(${Math.floor(244 + (109 - 244) * mix)}, ${Math.floor(165 + (213 - 165) * mix)}, ${Math.floor(174 + (237 - 174) * mix)}, ${opacity})`;
       }
     };
 
     const drawParticles = () => {
       // Create trailing effect instead of full clear
-      ctx.fillStyle = 'rgba(10, 14, 39, 0.05)';
+      ctx.fillStyle = 'rgba(26, 29, 46, 0.05)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       const time = timeRef.current;
