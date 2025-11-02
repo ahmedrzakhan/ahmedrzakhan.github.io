@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { personalInfo, animatedRoles, socialLinks } from '../data/portfolio';
 import { getBrandColors } from '../utils/brandColors';
+import { scrollToSection } from '../utils/scrollUtils';
 
 const Hero: React.FC = () => {
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
@@ -32,12 +33,6 @@ const Hero: React.FC = () => {
     return () => clearTimeout(timer);
   }, [currentText, isDeleting, currentRoleIndex, typeSpeed]);
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">

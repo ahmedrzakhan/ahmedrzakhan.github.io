@@ -1,69 +1,9 @@
 import React from 'react';
 import { personalInfo, socialLinks } from '../data/portfolio';
 import { getBrandColors } from '../utils/brandColors';
+import { scrollToTop as scrollUp, scrollToSection } from '../utils/scrollUtils';
 
 const Footer: React.FC = () => {
-  const scrollToTop = () => {
-    const duration = 1400;
-    const startPosition = window.pageYOffset;
-    let start: number | null = null;
-
-    const easeInOutCubic = (t: number): number => {
-      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-    };
-
-    const animation = (currentTime: number) => {
-      if (start === null) start = currentTime;
-      const timeElapsed = currentTime - start;
-      const progress = Math.min(timeElapsed / duration, 1);
-      const ease = easeInOutCubic(progress);
-
-      window.scrollTo(0, startPosition * (1 - ease));
-
-      if (timeElapsed < duration) {
-        requestAnimationFrame(animation);
-      }
-    };
-
-    requestAnimationFrame(animation);
-  };
-
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      const targetPosition = element.getBoundingClientRect().top + window.pageYOffset;
-      const startPosition = window.pageYOffset;
-      const distance = targetPosition - startPosition - 80;
-      const duration = 800; // Optimal duration for smooth feel
-      let start: number | null = null;
-
-      // Custom easing function - smooth and natural like iOS
-      const easeInOutQuart = (t: number): number => {
-        return t < 0.5
-          ? 8 * t * t * t * t
-          : 1 - Math.pow(-2 * t + 2, 4) / 2;
-      };
-
-      const animation = (currentTime: number) => {
-        if (start === null) start = currentTime;
-        const timeElapsed = currentTime - start;
-        const progress = Math.min(timeElapsed / duration, 1);
-        const ease = easeInOutQuart(progress);
-
-        window.scrollTo({
-          top: startPosition + distance * ease,
-          behavior: 'auto' // Use our custom animation instead of browser's
-        });
-
-        if (timeElapsed < duration) {
-          requestAnimationFrame(animation);
-        }
-      };
-
-      requestAnimationFrame(animation);
-    }
-  };
-
   const currentYear = new Date().getFullYear();
 
 
@@ -74,7 +14,7 @@ const Footer: React.FC = () => {
           {/* Logo and Description */}
           <div className="space-y-4 animate-fade-in">
             <button
-              onClick={scrollToTop}
+              onClick={scrollUp}
               className="text-3xl font-bold gradient-text hover:scale-105 transition-all duration-700 cubic-bezier-smooth inline-block"
             >
               Ahmed Raza Khan
@@ -166,7 +106,7 @@ const Footer: React.FC = () => {
               <span className="transition-colors duration-500 hover:text-gray-100">Styled with Tailwind CSS</span>
               <span className="transition-opacity duration-500 hover:opacity-50">•</span>
               <button
-                onClick={scrollToTop}
+                onClick={scrollUp}
                 className="liquid-button glass-light flex items-center hover:scale-105 px-4 py-2 rounded-lg font-medium group"
                 style={{ transition: 'all 0.7s cubic-bezier(0.19, 1, 0.22, 1)' }}
               >

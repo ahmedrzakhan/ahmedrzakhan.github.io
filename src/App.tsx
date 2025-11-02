@@ -25,7 +25,7 @@ function App() {
   useEffect(() => {
     // Track initial page view
     analytics.trackPageView('/', 'Ahmed Raza Khan - Portfolio');
-    
+
     // Set up intersection observer for section tracking
     const observerOptions = {
       root: null,
@@ -45,7 +45,7 @@ function App() {
     };
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
-    
+
     // Observe sections
     const sections = document.querySelectorAll('#projects, #about, #experience, #skills, #contact');
     sections.forEach(section => observer.observe(section));
@@ -58,6 +58,7 @@ function App() {
   const handleAnalyticsAccept = () => {
     // Analytics will be enabled automatically via the cookie consent
     // No reload needed - the useAnalytics hook will re-initialize when consent changes
+    window.location.reload(); // Reload to initialize analytics
   };
 
   const handleAnalyticsDecline = () => {
@@ -65,9 +66,9 @@ function App() {
   };
 
   // Check if user has admin access - multiple methods for security
-  const isAdmin = process.env.REACT_APP_ADMIN_MODE === 'true' || 
-                  process.env.NODE_ENV === 'development' ||
-                  window.location.search.includes('admin=true');
+  const isAdmin = process.env.REACT_APP_ADMIN_MODE === 'true' ||
+    process.env.NODE_ENV === 'development' ||
+    window.location.search.includes('admin=true');
 
   return (
     <div className="relative min-h-screen bg-slate-900">
@@ -82,9 +83,9 @@ function App() {
         <Contact analytics={analytics} />
       </main>
       <Footer />
-      
+
       {/* Cookie Consent Banner */}
-      <CookieConsent 
+      <CookieConsent
         onAccept={handleAnalyticsAccept}
         onDecline={handleAnalyticsDecline}
       />

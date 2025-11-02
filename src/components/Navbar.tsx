@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { resumeLink, personalInfo } from '../data/portfolio';
+import { scrollToSection as scrollTo } from '../utils/scrollUtils';
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -35,39 +36,7 @@ const Navbar: React.FC = () => {
   }, []);
 
   const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      const targetPosition = element.getBoundingClientRect().top + window.pageYOffset;
-      const startPosition = window.pageYOffset;
-      const distance = targetPosition - startPosition - 80;
-      const duration = 800; // Optimal duration for smooth feel
-      let start: number | null = null;
-
-      // Custom easing function - smooth and natural like iOS
-      const easeInOutQuart = (t: number): number => {
-        return t < 0.5
-          ? 8 * t * t * t * t
-          : 1 - Math.pow(-2 * t + 2, 4) / 2;
-      };
-
-      const animation = (currentTime: number) => {
-        if (start === null) start = currentTime;
-        const timeElapsed = currentTime - start;
-        const progress = Math.min(timeElapsed / duration, 1);
-        const ease = easeInOutQuart(progress);
-
-        window.scrollTo({
-          top: startPosition + distance * ease,
-          behavior: 'auto' // Use our custom animation instead of browser's
-        });
-
-        if (timeElapsed < duration) {
-          requestAnimationFrame(animation);
-        }
-      };
-
-      requestAnimationFrame(animation);
-    }
+    scrollTo(href, 80);
     setIsMobileMenuOpen(false);
   };
 
