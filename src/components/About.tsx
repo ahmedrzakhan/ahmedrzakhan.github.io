@@ -111,6 +111,22 @@ const About: React.FC = () => {
                     <i className="fas fa-check text-white text-xs"></i>
                   </div>
                   <span className="leading-relaxed">
+                    Won Best Project Award for IFSG platform at University of Dundee
+                  </span>
+                </li>
+                <li className="flex items-start group">
+                  <div className="w-6 h-6 rounded-lg bg-gradient-liquid flex items-center justify-center mt-0.5 mr-3 flex-shrink-0 group-hover:scale-110 transition-transform shadow-glass">
+                    <i className="fas fa-check text-white text-xs"></i>
+                  </div>
+                  <span className="leading-relaxed">
+                    Engineered scalable MF transaction system handling 20M+ monthly API calls
+                  </span>
+                </li>
+                <li className="flex items-start group">
+                  <div className="w-6 h-6 rounded-lg bg-gradient-liquid flex items-center justify-center mt-0.5 mr-3 flex-shrink-0 group-hover:scale-110 transition-transform shadow-glass">
+                    <i className="fas fa-check text-white text-xs"></i>
+                  </div>
+                  <span className="leading-relaxed">
                     Built systems processing millions of transactions monthly
                   </span>
                 </li>

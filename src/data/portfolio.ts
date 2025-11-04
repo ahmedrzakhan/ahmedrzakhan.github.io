@@ -72,8 +72,8 @@ export const experiences: Experience[] = [
     type: "Backend Role (Oct 2021 - Jul 2024)",
     description: [
       "Automatic Order Execution: Built an automated order processing system to address financial delays, increasing order fulfillment and contributing to a 2 million dollars monthly revenue gain",
+      "Mutual Fund Platform Development: Engineered scalable MF transaction system from ground up handling 20M+ monthly API calls to enable seamless portfolio management and real-time order execution",
       "Gateway Transactions: Revamped gateway systems to integrate mutual fund transactions with 265 external smallcase partners, significantly expanding service accessibility",
-      "Enable MF Transactions: Developed and integrated mutual fund transaction functionality, enabling 5 million users to access these services and expanding the offerings",
       "Real Time Notification: Successfully addressed a bottleneck in the critical communication notification system, leading to a 78% reduction in processing time",
       "Lead Generation Service: Enhanced lead generation service, integrating customer support systems and increasing first-time investor/subscriber conversions by 2K users monthly",
       "Domain Driven Design: Refactored multiple backend services to prioritize maintainability and eliminate redundancy streamlining future development efforts",
@@ -173,7 +173,14 @@ export const skills: Skill[] = [
   },
   {
     category: "Backend",
-    technologies: ["FastAPI", "Node.js", "Express.js", "NestJS", "Go Fiber", "Spring Boot"],
+    technologies: [
+      "FastAPI",
+      "Node.js",
+      "Express.js",
+      "NestJS",
+      "Go Fiber",
+      "Spring Boot",
+    ],
   },
   {
     category: "Frontend",
@@ -202,7 +209,14 @@ export const skills: Skill[] = [
   },
   {
     category: "Cloud & DevOps",
-    technologies: ["AWS", "Docker", "Google Cloud", "Jenkins", "Nginx", "Kubernetes"],
+    technologies: [
+      "AWS",
+      "Docker",
+      "Google Cloud",
+      "Jenkins",
+      "Nginx",
+      "Kubernetes",
+    ],
   },
   {
     category: "Tools",
