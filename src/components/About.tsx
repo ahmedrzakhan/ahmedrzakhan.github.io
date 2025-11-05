@@ -111,7 +111,7 @@ const About: React.FC = () => {
                     <i className="fas fa-check text-white text-xs"></i>
                   </div>
                   <span className="leading-relaxed">
-                    Won Best Project Award for IFSG platform at University of Dundee
+                    Won Best Project Award for IFSG platform at University of Dundee (2025)
                   </span>
                 </li>
                 <li className="flex items-start group">
