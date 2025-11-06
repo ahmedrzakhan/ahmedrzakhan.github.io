@@ -43,6 +43,7 @@ const techColors: { [key: string]: { bg: string; text: string; icon?: string } }
   // Databases
   'PostgreSQL': { bg: 'bg-[#336791]', text: 'text-white', icon: 'fas fa-database' },
   'MongoDB': { bg: 'bg-[#47A248]', text: 'text-white', icon: 'fas fa-leaf' },
+  'Cassandra': { bg: 'bg-[#1287B1]', text: 'text-white', icon: 'fas fa-database' },
   'Redis': { bg: 'bg-[#DC382D]', text: 'text-white', icon: 'fas fa-memory' },
   'Elasticsearch': { bg: 'bg-[#005571]', text: 'text-white', icon: 'fas fa-search' },
 

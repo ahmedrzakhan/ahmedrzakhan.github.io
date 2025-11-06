@@ -202,6 +202,7 @@ export const skills: Skill[] = [
     technologies: [
       "PostgreSQL",
       "MongoDB",
+      "Cassandra",
       "Redis",
       "Elasticsearch",
       "ChromaDB",
